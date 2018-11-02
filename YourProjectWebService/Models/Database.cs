@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Web;
+using Dapper;
 
 namespace YourProjectWebService.Models
 {
@@ -21,6 +23,18 @@ namespace YourProjectWebService.Models
         public static SQLiteConnection SqLiteConnection()
         {
             return new SQLiteConnection(ConnectionString);
+        }
+
+        public static void CreateDataBase()
+        {
+            using (var db = new SQLiteConnection())
+            {
+                var appDataPath = HttpContext.Current.Server.MapPath("~/App_Data");
+                var scriptFileName = "schema.txt";
+                var scriptPath = Path.Combine(appDataPath, scriptFileName);
+                var queries = File.ReadAllText(scriptPath);
+                db.Execute(queries);
+            }
         }
 
 

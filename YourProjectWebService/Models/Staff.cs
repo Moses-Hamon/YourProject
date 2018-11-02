@@ -10,6 +10,5 @@ namespace YourProjectWebService.Models
         public int StaffId { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
-
     }
 }
