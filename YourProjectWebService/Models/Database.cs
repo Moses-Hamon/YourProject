@@ -27,7 +27,7 @@ namespace YourProjectWebService.Models
 
         public static void CreateDataBase()
         {
-            using (var db = new SQLiteConnection())
+            using (var db = SqLiteConnection())
             {
                 var appDataPath = HttpContext.Current.Server.MapPath("~/App_Data");
                 var scriptFileName = "schema.txt";
