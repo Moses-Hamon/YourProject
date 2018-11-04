@@ -179,6 +179,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Api\ToolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -187,7 +188,7 @@
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Patron.cs" />
-    <Compile Include="Models\PatronToolLoan.cs" />
+    <Compile Include="Models\PatronToolLoanInvoice.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Tool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -262,6 +263,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

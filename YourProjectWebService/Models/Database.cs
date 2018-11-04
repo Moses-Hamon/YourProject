@@ -20,14 +20,14 @@ namespace YourProjectWebService.Models
             ConnectionString = $"Data Source={dbPath}";
         }
 
-        public static SQLiteConnection SqLiteConnection()
+        public static SQLiteConnection GetConnection()
         {
             return new SQLiteConnection(ConnectionString);
         }
 
         public static void CreateDataBase()
         {
-            using (var db = SqLiteConnection())
+            using (var db = GetConnection())
             {
                 var appDataPath = HttpContext.Current.Server.MapPath("~/App_Data");
                 var scriptFileName = "schema.txt";

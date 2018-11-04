@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS PatronToolLoan (
 	patronId INTEGER NOT NULL,
 	dateRented NUMERIC NOT NULL,
 	dateReturned NUMERIC,
-	workspace TEXT NOT NULL
+	workspace TEXT NOT NULL,
 	FOREIGN KEY (toolId) REFERENCES Tool(ToolId),
 	FOREIGN KEY (patronId) REFERENCES Patron(PatronId)
 );
@@ -33,5 +33,5 @@ CREATE TABLE IF NOT EXISTS Patron (
 CREATE TABLE IF NOT EXISTS Staff (
 	StaffId INTEGER PRIMARY KEY AUTOINCREMENT,
 	userName TEXT NOT NULL,
-	password TEXT NOT NULL,
+	password TEXT NOT NULL
 );
