@@ -15,7 +15,10 @@ namespace YourProjectWebService.Controllers.Api
         private const string QuerySelectOne = "SELECT * FROM Tool WHERE ToolId = @id";
 
         private const string QueryInsertInto =
-            "INSERT INTO Tool (description, active, comments, inUse) VALUES (@brandId, @description, @active, @comments, @inUse);";
+            "INSERT INTO Tool (brandId, description, active, comments, inUse) VALUES (@brandId, @description, @active, @comments, @inUse);";
+
+        private const string QueryUpdate =
+            "UPDATE Tool SET brandId=@brandId, description=@description, active=@active, comments=@comments, inUse=@inUse WHERE ToolId=@id;";
 
         // GET /api/tool
         [HttpGet]
