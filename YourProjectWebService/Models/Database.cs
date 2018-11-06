@@ -8,11 +8,18 @@ using Dapper;
 
 namespace YourProjectWebService.Models
 {
+    /// <summary>
+    /// Database class that holds information and methods relevant to the database.
+    /// </summary>
     public static class Database
     {
         private const string DbName = "your_project.db";
         private static readonly string ConnectionString;
 
+        /// <summary>
+        /// Class constructor used to map the database path.
+        /// Provides information for the connection string.
+        /// </summary>
         static Database()
         {
             //Gets the path for the database
@@ -20,11 +27,18 @@ namespace YourProjectWebService.Models
             ConnectionString = $"Data Source={dbPath}";
         }
 
+        /// <summary>
+        ///  Method for returning a new SQLiteConnection
+        /// </summary>
+        /// <returns>New SQLiteConnection </returns>
         public static SQLiteConnection GetConnection()
         {
             return new SQLiteConnection(ConnectionString);
         }
 
+        /// <summary>
+        /// Method for creating database using the schema.txt that is provided.
+        /// </summary>
         public static void CreateDataBase()
         {
             using (var db = GetConnection())
