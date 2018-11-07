@@ -11,17 +11,7 @@ namespace YourProjectWebService.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
-            var patron = new Patron()
-            {
-                PatronId = 1,
-                PatronName = "Test",
-                IsGroup = true
-            };
-
-
-            return View(patron);
+            return View();
         }
     }
 }
