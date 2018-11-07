@@ -42,7 +42,7 @@ namespace YourProjectWebService.Controllers.Api
                 // less likely to suffer from SQL injection
                 var param = new { id };
 
-                // passing the query casted to our tool object into a variable
+                // executing the query and casting it into a Tool object.
                 var tool = db.QuerySingleOrDefault<Tool>(QuerySelectOne, param);
 
                 // check to see if the object is null and if so created an error response
