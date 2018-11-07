@@ -12,6 +12,10 @@ namespace YourProjectWebService
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Entry point to the application which sets up all out configurations
+        /// and runs our create database method.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
