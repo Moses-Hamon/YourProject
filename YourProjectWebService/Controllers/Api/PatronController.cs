@@ -13,7 +13,7 @@ namespace YourProjectWebService.Controllers.Api
     public class PatronController : ApiController
     {
         private const string QuerySelectAll = "SELECT * FROM Patron";
-        private const string QuerySelectOne = "SELECT * FROM Tool WHERE PatronId = @id";
+        private const string QuerySelectOne = "SELECT * FROM Patron WHERE PatronId = @id";
         private const string QueryInsertInto =
             "INSERT INTO Patron (patronName, isGroup) VALUES (@patronName, @isGroup);";
         private const string QueryUpdate =
@@ -23,17 +23,22 @@ namespace YourProjectWebService.Controllers.Api
 
         // GET: api/Patron
         [HttpGet]
-        public IEnumerable<Patron> GetAllPatrons()
+        public IHttpActionResult GetAllPatrons()
         {
             using (var db = Database.GetConnection().OpenAndReturn())
             {
-                return db.Query<Patron>(QuerySelectAll).ToList();
+                return Ok(db.Query<Patron>(QuerySelectAll).ToList());
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/Patron/5
         [HttpGet]
-        public HttpResponseMessage GetPatron(int id)
+        public IHttpActionResult GetPatron(int id)
         {
             using (var db = Database.GetConnection().OpenAndReturn())
             {
@@ -41,19 +46,18 @@ namespace YourProjectWebService.Controllers.Api
                 var patron = db.QuerySingleOrDefault<Patron>(QuerySelectOne, param);
                 if (patron != null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.Found, patron);
+                    return Ok(patron);
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                        $"The Patron with id: {id} was not found!!");
+                    return NotFound();
                 }
             }
         }
 
         // POST: api/Patron
         [HttpPost]
-        public HttpResponseMessage CreatePatron(Patron patron)
+        public IHttpActionResult CreatePatron(Patron patron)
         {
             if (!ModelState.IsValid)
             {
@@ -76,10 +80,11 @@ namespace YourProjectWebService.Controllers.Api
                 {
 
                     trans.Rollback();
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return BadRequest();
                 }
                 db.Close();
-                return Request.CreateResponse(HttpStatusCode.OK, patron);
+
+                return Ok(patron);
 
             }
         }
@@ -91,7 +96,7 @@ namespace YourProjectWebService.Controllers.Api
         
         // PUT: api/Patron/5
         [HttpPut]
-        public HttpResponseMessage UpdatePatron(Patron patron)
+        public IHttpActionResult UpdatePatron(Patron patron)
         {
             using (var db = Database.GetConnection().OpenAndReturn())
             using (var trans = db.BeginTransaction())
@@ -101,15 +106,15 @@ namespace YourProjectWebService.Controllers.Api
                     var results = db.Execute(QueryUpdate, patron, trans);
                     if (results == 0)
                     {
-                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+                        return BadRequest("The Patron could not be created.");
                     }
                     trans.Commit();
-                    return Request.CreateResponse(HttpStatusCode.OK, patron);
+                    return Ok(patron);
                 }
                 catch (Exception e)
                 {
                     trans.Rollback();
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $" Updating Failed {e.Message}");
+                    return BadRequest($"The Patron could not be created. Exception: {e.Message}");
                 }
             }
 
@@ -117,11 +122,11 @@ namespace YourProjectWebService.Controllers.Api
 
         // DELETE: api/Patron/5
         [HttpDelete]
-        public HttpResponseMessage DeletePatron(Patron patron)
+        public IHttpActionResult DeletePatron(Patron patron)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             using (var db = Database.GetConnection().OpenAndReturn())
             using (var trans = db.BeginTransaction())
@@ -131,19 +136,17 @@ namespace YourProjectWebService.Controllers.Api
                     var results = db.Execute(QueryDelete, patron, trans);
                     if (results > 0)
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK,
-                            $"Patron with Id: {patron.PatronId} has been deleted!!");
+                        return Created(new Uri(Request.RequestUri + $"/{patron.PatronId}"), results);
                     }
                     else
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                            $"Patron with id: {patron.PatronId} could not be deleted");
+                        return NotFound();
                     }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    return BadRequest($"Patron could not be deleted: {e.Message}");
                 }
             }
         }
