@@ -83,7 +83,12 @@ namespace YourProjectWebService.Controllers.Api
 
             }
         }
-
+        /// <summary>
+        /// Updates a Patron entry in database using an existing patron object.
+        /// </summary>
+        /// <param name="patron">Patron Object</param>
+        /// <returns>Patron with message</returns>
+        
         // PUT: api/Patron/5
         [HttpPut]
         public HttpResponseMessage UpdatePatron(Patron patron)
