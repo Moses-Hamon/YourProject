@@ -29,7 +29,6 @@ namespace YourProjectWebService.Controllers.Api
             {
                 return Ok(db.Query<Tool>(QuerySelectAll).ToList());
             }
-
         }
         
         // GET /api/tool/1
@@ -52,10 +51,8 @@ namespace YourProjectWebService.Controllers.Api
                     return NotFound();
                 }
                 // returns the requested object.
-                else
-                {
-                    return Ok(tool);
-                }
+
+                return Ok(tool);
             }
         }
 
@@ -67,7 +64,6 @@ namespace YourProjectWebService.Controllers.Api
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-
             // Opens connection
             // Executes query in a transaction just in-case rollback is required.
             using (var db = Database.GetConnection().OpenAndReturn())
@@ -77,7 +73,6 @@ namespace YourProjectWebService.Controllers.Api
                 {
                     // executes with tool object
                     var results = db.Execute(QueryInsertInto, tool, trans);
-
                     // updates the object with the new id and returns it
                     if (db.LastInsertRowId > 0)
                     {
@@ -85,6 +80,7 @@ namespace YourProjectWebService.Controllers.Api
                     }
                     //commits the transaction
                     trans.Commit();
+                    return Ok(tool);
                 }
                 catch (Exception e)
                 {
@@ -92,9 +88,10 @@ namespace YourProjectWebService.Controllers.Api
                     trans.Rollback();
                     return InternalServerError(e);
                 }
-                // closes connection to database
-                db.Close();
-                return Ok(tool);
+                finally // closes connection to database
+                {
+                    db.Close();
+                }
             }
         }
 
@@ -150,10 +147,8 @@ namespace YourProjectWebService.Controllers.Api
                     {
                         return Ok();
                     }
-                    else
-                    {
-                        return NotFound();
-                    }
+
+                    return NotFound();
                 }
                 catch (Exception e)
                 {
