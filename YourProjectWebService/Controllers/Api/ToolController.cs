@@ -23,20 +23,18 @@ namespace YourProjectWebService.Controllers.Api
   
         // GET /api/tool
         [HttpGet]
-        public IEnumerable<Tool> GetAllTools()
+        public IHttpActionResult GetAllTools()
         {
             using (var db = Database.GetConnection().OpenAndReturn())
             {
-                return db.Query<Tool>(QuerySelectAll).ToList();
+                return Ok(db.Query<Tool>(QuerySelectAll).ToList());
             }
 
         }
-
-       
-
+        
         // GET /api/tool/1
         [HttpGet]
-        public HttpResponseMessage GetTool(int id)
+        public IHttpActionResult GetTool(int id)
         {
             //opens the database
             using (var db = Database.GetConnection().OpenAndReturn())
@@ -51,20 +49,18 @@ namespace YourProjectWebService.Controllers.Api
                 // check to see if the object is null and if so created an error response
                 if (tool == null)
                 {
-                    var errorMessage = $"There are no tools with id = {id}";
-                    var httpError = new HttpError(errorMessage);
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, httpError);
+                    return NotFound();
                 }
                 // returns the requested object.
                 else
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, tool);
+                    return Ok(tool);
                 }
             }
         }
 
         [HttpPost]
-        public Tool CreateTool(Tool tool)
+        public IHttpActionResult CreateTool(Tool tool)
         {
             // checks to see if the model is a valid tool object
             if (!ModelState.IsValid)
@@ -90,19 +86,20 @@ namespace YourProjectWebService.Controllers.Api
                     //commits the transaction
                     trans.Commit();
                 }
-                catch
+                catch (Exception e)
                 {
                     //rolls transaction back if there is an error
                     trans.Rollback();
+                    return InternalServerError(e);
                 }
                 // closes connection to database
                 db.Close();
-                return tool;
+                return Ok(tool);
             }
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateTool(Tool tool)
+        public IHttpActionResult UpdateTool(Tool tool)
         {
             if (!ModelState.IsValid)
             {
@@ -118,27 +115,27 @@ namespace YourProjectWebService.Controllers.Api
 
                     if (results == 0)
                     {
-                        throw new HttpResponseException(HttpStatusCode.NotFound);
+                        return NotFound();
                     }
                     trans.Commit();
-                    return Request.CreateResponse(HttpStatusCode.OK, tool);
+                    return Ok(tool);
 
                 }
                 catch (Exception e)
                 {
                     trans.Rollback();
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $" Updating Failed {e.Message}");
+                    return InternalServerError(e);
                 }
             }
         }
 
         // DELETE /api/tool
         [HttpDelete]
-        public HttpResponseMessage DeleteTool(Tool tool)
+        public IHttpActionResult DeleteTool(Tool tool)
         {
             if (!ModelState.IsValid)
             {
-               throw new HttpResponseException(HttpStatusCode.BadRequest);
+               return BadRequest("The object sent was not a valid object");
             }
 
             using (var db = Database.GetConnection().OpenAndReturn())
@@ -151,19 +148,17 @@ namespace YourProjectWebService.Controllers.Api
                     // SQLite will return the number of rows that have been deleted
                     if (results > 0)
                     {
-                        return Request.CreateResponse(HttpStatusCode.OK,
-                            $"Tool with tool id: {tool.ToolId} was successfully deleted");
+                        return Ok();
                     }
                     else
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound,
-                            $"Tool with tool id: {tool.ToolId} could not be deleted");
+                        return NotFound();
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                    
+                    return InternalServerError(e);
                 }
 
             }
