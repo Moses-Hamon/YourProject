@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using YourProjectWebApp.Models;
 
 namespace YourProjectWebApp.Controllers
 {
@@ -25,6 +27,14 @@ namespace YourProjectWebApp.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public async Task<ActionResult> Test()
+        {
+
+            var tools = await Tool.GetAllTools();
+
+            return View(tools);
         }
     }
 }
