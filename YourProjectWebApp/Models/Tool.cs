@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using YourProjectWebApp.DAL;
 
 namespace YourProjectWebApp.Models
@@ -19,9 +21,9 @@ namespace YourProjectWebApp.Models
         /// Contacts Api and Retrieves Enumeration of all Tool objects stored in the database
         /// </summary>
         /// <returns></returns>
-        public static async Task<IEnumerable<Tool>> GetAllTools()
+        public static async Task<IEnumerable<Tool>> GetAll()
         {
-            string url = "api/tool/";
+            const string url = "api/tool/";
 
             // sends request to the API using the url specific to the api. It then closes the request connection
             // response is finished.
@@ -36,6 +38,41 @@ namespace YourProjectWebApp.Models
                 {
                     throw new Exception(response.ReasonPhrase);
                 }
+            }
+        }
+
+
+        public static bool Create(Tool tool)
+        {
+            const string url = "api/tool/";
+
+            using (var postTask = ApiConnection.YourProjectApiClient.PostAsJsonAsync<Tool>(url, tool))
+            {
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static Tool Update(Tool tool)
+        {
+            const string url = "api/tool/";
+
+            using (var putTask = ApiConnection.YourProjectApiClient.PutAsJsonAsync<Tool>(url, tool))
+            {
+                putTask.Wait();
+
+                var result = putTask.Result;
+
+
             }
         }
 

@@ -29,12 +29,5 @@ namespace YourProjectWebApp.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Test()
-        {
-
-            var tools = await Tool.GetAllTools();
-
-            return View(tools);
-        }
     }
 }
