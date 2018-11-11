@@ -10,6 +10,9 @@ namespace YourProjectWebApp.Models
 {
     public class Tool
     {
+        /// <summary>
+        /// Properties
+        /// </summary>
         public long ToolId { get; set; }
         public long BrandId { get; set; }
         public string Description { get; set; }
@@ -17,21 +20,47 @@ namespace YourProjectWebApp.Models
         public string Comments { get; set; }
         public bool InUse { get; set; }
 
+        private const string Url = "api/tool/";
+
+        public static Tool GetSingle(long id)
+        {
+            Tool tool = null;
+            // Uses the selected id as a parameter for retrieving selected tool
+            using (var responseTask = ApiConnection.YourProjectApiClient.GetAsync(Url+id.ToString()))
+            {
+                //wait for response
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                // checks to see if the Get request was successful
+                if (result.IsSuccessStatusCode)
+                {
+                    // reads the in as a tool object
+                    var readTask = result.Content.ReadAsAsync<Tool>();
+                    readTask.Wait();
+                    // pass the result into tool
+                    tool = readTask.Result;
+                }
+            }
+            // returns null if no tool found or completed tool.
+            return tool;
+        }
+
         /// <summary>
         /// Contacts Api and Retrieves Enumeration of all Tool objects stored in the database
         /// </summary>
         /// <returns></returns>
         public static async Task<IEnumerable<Tool>> GetAll()
         {
-            const string url = "api/tool/";
-
+            
             // sends request to the API using the url specific to the api. It then closes the request connection
             // response is finished.
-            using (HttpResponseMessage response = await ApiConnection.YourProjectApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ApiConnection.YourProjectApiClient.GetAsync(Url))
             {
+                // if the resonse status code is successful (200)
                 if (response.IsSuccessStatusCode)
                 {
-                    IEnumerable<Tool> tool = await response.Content.ReadAsAsync<IEnumerable<Tool>>();
+                    var tool = await response.Content.ReadAsAsync<IEnumerable<Tool>>();
                     return tool;
                 }
                 else
@@ -44,34 +73,27 @@ namespace YourProjectWebApp.Models
 
         public static bool Create(Tool tool)
         {
-            const string url = "api/tool/";
 
-            using (var postTask = ApiConnection.YourProjectApiClient.PostAsJsonAsync<Tool>(url, tool))
+            using (var postTask = ApiConnection.YourProjectApiClient.PostAsJsonAsync<Tool>(Url, tool))
             {
                 postTask.Wait();
 
                 var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                // Returns the success of the Post
+                return result.IsSuccessStatusCode;
             }
         }
 
-        public static Tool Update(Tool tool)
+        public static bool Update(Tool tool)
         {
-            const string url = "api/tool/";
-
-            using (var putTask = ApiConnection.YourProjectApiClient.PutAsJsonAsync<Tool>(url, tool))
+            
+            using (var putTask = ApiConnection.YourProjectApiClient.PutAsJsonAsync<Tool>(Url, tool))
             {
                 putTask.Wait();
 
                 var result = putTask.Result;
 
+                return result.IsSuccessStatusCode;
 
             }
         }
