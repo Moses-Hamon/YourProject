@@ -1,0 +1,18 @@
+﻿@model IEnumerable<YourProjectWebService.Models.Tool>
+@{
+    ViewBag.Title = "GetMembers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of members</h2>
+@foreach (var tool in Model)
+{
+    <p>@tool.ToolId <br/>
+        @tool.BrandId, <br/>
+        @tool.Comments <br/>
+        <br/>
+        <br/>
+    
+        </p>
+
+}
