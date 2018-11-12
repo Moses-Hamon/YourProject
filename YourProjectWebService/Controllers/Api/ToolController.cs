@@ -18,7 +18,7 @@ namespace YourProjectWebService.Controllers.Api
             "INSERT INTO Tool (brandId, description, active, comments, inUse) VALUES (@brandId, @description, @active, @comments, @inUse);";
         private const string QueryUpdate =
             "UPDATE Tool SET brandId=@brandId, description=@description, active=@active, comments=@comments, inUse=@inUse WHERE ToolId=@ToolId;";
-        private const string QueryDelete = "DELETE FROM Tool WHERE ToolId=@ToolId;";
+        private const string QueryDelete = "DELETE FROM Tool WHERE ToolId=@id;";
 
   
         // GET /api/tool
@@ -126,9 +126,9 @@ namespace YourProjectWebService.Controllers.Api
             }
         }
 
-        // DELETE /api/tool
+        // DELETE /api/tool/{id}
         [HttpDelete]
-        public IHttpActionResult DeleteTool(Tool tool)
+        public IHttpActionResult DeleteTool(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -140,8 +140,9 @@ namespace YourProjectWebService.Controllers.Api
             {
                 try
                 {
+                    var param = new {id};
                     // Executes the query for deletion
-                    var results = db.Execute(QueryDelete, tool, trans);
+                    var results = db.Execute(QueryDelete, param, trans);
                     // SQLite will return the number of rows that have been deleted
                     if (results > 0)
                     {

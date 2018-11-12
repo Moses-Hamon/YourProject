@@ -7,8 +7,8 @@ namespace YourProjectWebService.Models
 {
     public class Tool
     {
-        public long ToolId { get; set; }
-        public long BrandId { get; set; }
+        public int ToolId { get; set; }
+        public int BrandId { get; set; }
         public string Description { get; set; }
         public bool Active { get; set; }
         public string Comments { get; set; }
