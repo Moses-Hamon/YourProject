@@ -47,15 +47,19 @@ namespace YourProjectWebApp.Controllers
         }
 
         public ActionResult Edit(int id)
-        {
+        { 
+            // retrieve item using api
             var tool = Tool.GetSingle(id);
-
+            // checks to see if the item exists
             if (!tool.Equals(null))
-            {
+            {   
+                // returns item to the view ready for editing
                 return View(tool);
-                }
+            }
             else
             {
+                // adds error to pass onto view
+                ModelState.AddModelError(string.Empty, "The item does not exist");
                 return RedirectToAction("Index");
             }
         }
@@ -68,30 +72,33 @@ namespace YourProjectWebApp.Controllers
             {
                 return View(tool);
             }
-            // If the tool updates successfully
+            // If the item updates successfully
             if (Tool.Update(tool))
             {
+                // adds success message
                 TempData["Success"] = "Tool Updated Successfully!!";
                 return RedirectToAction("Index");
             }
             else
             {
+                //provides error message and returns to the edit screen
                 ModelState.AddModelError(string.Empty, "Error Updating tool.");
                 return View(tool);
             }
         }
-
         
         public ActionResult Delete(int id)
         {
+            // grabs the item from the database
             var tool = Tool.GetSingle(id);
+            // checks if the item exists
             if (tool == null)
             {
+                // creates error message if the item does not exist
                 ModelState.AddModelError(string.Empty, $"Item with ID: {id} Does not exist in the database!!!");
                 return View("Index");
             }
-            //check model
-
+            // executes the delete method which calls api for deletion
             if (Tool.Delete(tool.ToolId))
             {
                 // adds success msg that will display in the index screen
@@ -100,6 +107,7 @@ namespace YourProjectWebApp.Controllers
             }
             else
             {
+                // adds error message and returns to index
                 ModelState.AddModelError(string.Empty, $"Error deleting item with id:{id}");
                 return RedirectToAction("Index");
             }

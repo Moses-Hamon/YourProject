@@ -28,6 +28,11 @@ namespace YourProjectWebApp.Models
 
         private const string Url = "api/tool/";
 
+        /// <summary>
+        /// HttpRequest for retrieving single item
+        /// </summary>
+        /// <param name="id">Id of the item</param>
+        /// <returns>Object</returns>
         public static Tool GetSingle(int id)
         {
             Tool tool = null;
@@ -76,12 +81,17 @@ namespace YourProjectWebApp.Models
             }
         }
 
-
+        /// <summary>
+        /// Sends a Post request
+        /// </summary>
+        /// <param name="tool">Object from Model Tool</param>
+        /// <returns></returns>
         public static bool Create(Tool tool)
         {
-
+            // sends a post request using the model to create entry
             using (var postTask = ApiConnection.YourProjectApiClient.PostAsJsonAsync<Tool>(Url, tool))
             {
+                // waits for response
                 postTask.Wait();
 
                 var result = postTask.Result;
@@ -90,20 +100,31 @@ namespace YourProjectWebApp.Models
             }
         }
 
+        /// <summary>
+        /// Sends a PUT request to the api with the Model object
+        /// </summary>
+        /// <param name="tool">Object from Model tool</param>
+        /// <returns>HttpRequest results</returns>
         public static bool Update(Tool tool)
         {
-            
+            // Sends a PUT request to the api with the Model object
             using (var putTask = ApiConnection.YourProjectApiClient.PutAsJsonAsync<Tool>(Url, tool))
             {
+                //waits for response
                 putTask.Wait();
-
+                // records the result
                 var result = putTask.Result;
-
+                // returns the result
                 return result.IsSuccessStatusCode;
 
             }
         }
 
+        /// <summary>
+        ///  Sends HttpRequest for Deleting Item
+        /// </summary>
+        /// <param name="id">Id of the item</param>
+        /// <returns>HttpRequest results</returns>
         public static bool Delete(int id)
         {
             // Attaches the Api String and Tool and sends a Delete Request
