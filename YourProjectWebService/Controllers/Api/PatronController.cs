@@ -18,7 +18,7 @@ namespace YourProjectWebService.Controllers.Api
             "INSERT INTO Patron (patronName, isGroup) VALUES (@patronName, @isGroup);";
         private const string QueryUpdate =
             "UPDATE Patron SET patronName=@patronName, isGroup=@isGroup WHERE PatronId=@PatronId;";
-        private const string QueryDelete = "DELETE FROM Tool WHERE PatronId=@PatronId;";
+        private const string QueryDelete = "DELETE FROM Tool WHERE PatronId=@id;";
 
 
         // GET: api/Patron
@@ -136,15 +136,18 @@ namespace YourProjectWebService.Controllers.Api
                     var results = db.Execute(QueryDelete, patron, trans);
                     if (results > 0)
                     {
-                        return Created(new Uri(Request.RequestUri + $"/{patron.PatronId}"), results);
+                        trans.Commit();
+                        return Ok();
                     }
                     else
                     {
+                        trans.Rollback();
                         return NotFound();
                     }
                 }
                 catch (Exception e)
                 {
+                    trans.Rollback();
                     Console.WriteLine(e);
                     return BadRequest($"Patron could not be deleted: {e.Message}");
                 }

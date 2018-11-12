@@ -95,7 +95,6 @@ namespace YourProjectWebApp.Controllers
         }
 
         // POST: Brand/Delete/5
-        [HttpPost]
         public ActionResult Delete(int id)
         {
             // grabs the item from the database

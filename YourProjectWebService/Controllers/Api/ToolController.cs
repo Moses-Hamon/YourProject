@@ -146,14 +146,18 @@ namespace YourProjectWebService.Controllers.Api
                     // SQLite will return the number of rows that have been deleted
                     if (results > 0)
                     {
+                        trans.Commit();
                         return Ok();
                     }
-
-                    return NotFound();
+                    else
+                    {
+                        trans.Rollback();
+                        return NotFound();
+                    }
                 }
                 catch (Exception e)
                 {
-                    
+                    trans.Rollback();
                     return InternalServerError(e);
                 }
 

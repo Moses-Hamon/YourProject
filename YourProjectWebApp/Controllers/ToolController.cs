@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using YourProjectWebApp.Models;
+using YourProjectWebApp.ViewModels;
 
 namespace YourProjectWebApp.Controllers
 {
@@ -15,7 +16,14 @@ namespace YourProjectWebApp.Controllers
         public async Task<ActionResult> Index()
         {
             var tools = await Tool.GetAll();
-            return View(tools);
+            var brands = await Brand.GetAll();
+
+            var viewModel = new ToolViewModel()
+            {
+                Tool = tools,
+                Brands = ToolViewModel.Convert(brands)
+            };
+            return View(viewModel);
         }
 
         // GET: Create

@@ -17,7 +17,7 @@ namespace YourProjectWebService.Controllers.Api
             "INSERT INTO Brand (brandName) VALUES (@brandName);";
         private const string QueryUpdate =
             "UPDATE Brand SET brandName=@brandName WHERE BrandId=@BrandId;";
-        private const string QueryDelete = "DELETE FROM Brand WHERE BrandId=@BrandId;";
+        private const string QueryDelete = "DELETE FROM Brand WHERE BrandId=@id;";
 
         // GET: api/Brand
         public IHttpActionResult Get()
@@ -116,20 +116,28 @@ namespace YourProjectWebService.Controllers.Api
         }
 
         // DELETE: api/Brand/5
-        public IHttpActionResult DeleteBrand(Brand brand)
+        [HttpDelete]
+        public IHttpActionResult DeleteBrand(int id)
         {
             using (var db = Database.GetConnection().OpenAndReturn())
             using (var trans = db.BeginTransaction())
             {
                 try
                 {
-                    var results = db.Execute(QueryDelete, brand, trans);
+                    var param = new {id};
+                    var results = db.Execute(QueryDelete, param, trans);
                     if (results > 0)
                     {
+                        trans.Commit();
                         return Ok();
                     }
+                    else
+                    {
+                        trans.Rollback();
+                        return NotFound();
 
-                    return NotFound();
+                    }
+                    
                 }
                 catch (Exception e)
                 {
