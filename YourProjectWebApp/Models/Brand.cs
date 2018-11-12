@@ -4,7 +4,7 @@ namespace YourProjectWebApp.Models
 {
     public class Brand
     {
-        public long BrandId { get; set; }
+        public int BrandId { get; set; }
 
         // Annotations are used to apply restrictions which will help with good structure
         // and allow for input validation when creating the forms.

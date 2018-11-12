@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -13,8 +15,12 @@ namespace YourProjectWebApp.Models
         /// <summary>
         /// Properties
         /// </summary>
-        public long ToolId { get; set; }
-        public long BrandId { get; set; }
+        public int ToolId { get; set; }
+
+        [Required]
+        public int BrandId { get; set; }
+
+        [Required]
         public string Description { get; set; }
         public bool Active { get; set; }
         public string Comments { get; set; }
@@ -22,7 +28,7 @@ namespace YourProjectWebApp.Models
 
         private const string Url = "api/tool/";
 
-        public static Tool GetSingle(long id)
+        public static Tool GetSingle(int id)
         {
             Tool tool = null;
             // Uses the selected id as a parameter for retrieving selected tool
@@ -98,6 +104,21 @@ namespace YourProjectWebApp.Models
             }
         }
 
+        public static bool Delete(long id)
+        {
+            // Attaches the Api String and Tool and sends a Delete Request
+            using (var deleteTask = ApiConnection.YourProjectApiClient.DeleteAsync(Url + id.ToString()))
+            {
+                //waits for response
+                deleteTask.Wait();
+                // stores result
+                var result = deleteTask.Result;
+                // returns if the deletion was successful 
+                return result.IsSuccessStatusCode;
+            }
+        }
+
+     
     }
 
 
