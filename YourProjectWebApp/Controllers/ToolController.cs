@@ -36,6 +36,7 @@ namespace YourProjectWebApp.Controllers
             //runs create via API
             if (Tool.Create(tool))
             {
+                TempData["Success"] = "Tool Created Successfully!!";
                 return RedirectToAction("Index");
             }
             else
@@ -45,7 +46,7 @@ namespace YourProjectWebApp.Controllers
             }
         }
 
-        public ActionResult Edit(long id)
+        public ActionResult Edit(int id)
         {
             var tool = Tool.GetSingle(id);
 
@@ -70,12 +71,37 @@ namespace YourProjectWebApp.Controllers
             // If the tool updates successfully
             if (Tool.Update(tool))
             {
+                TempData["Success"] = "Tool Updated Successfully!!";
                 return RedirectToAction("Index");
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "Error Updating tool.");
                 return View(tool);
+            }
+        }
+
+        
+        public ActionResult Delete(int id)
+        {
+            var tool = Tool.GetSingle(id);
+            if (tool == null)
+            {
+                ModelState.AddModelError(string.Empty, $"Item with ID: {id} Does not exist in the database!!!");
+                return View("Index");
+            }
+            //check model
+
+            if (Tool.Delete(tool.ToolId))
+            {
+                // adds success msg that will display in the index screen
+                TempData["Success"] = $"Tool deleted successfully!!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, $"Error deleting item with id:{id}");
+                return RedirectToAction("Index");
             }
 
 

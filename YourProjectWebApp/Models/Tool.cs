@@ -32,7 +32,7 @@ namespace YourProjectWebApp.Models
         {
             Tool tool = null;
             // Uses the selected id as a parameter for retrieving selected tool
-            using (var responseTask = ApiConnection.YourProjectApiClient.GetAsync(Url+id.ToString()))
+            using (var responseTask = ApiConnection.YourProjectApiClient.GetAsync(Url+id))
             {
                 //wait for response
                 responseTask.Wait();
@@ -63,7 +63,7 @@ namespace YourProjectWebApp.Models
             // response is finished.
             using (HttpResponseMessage response = await ApiConnection.YourProjectApiClient.GetAsync(Url))
             {
-                // if the resonse status code is successful (200)
+                // if the response status code is successful (200)
                 if (response.IsSuccessStatusCode)
                 {
                     var tool = await response.Content.ReadAsAsync<IEnumerable<Tool>>();
@@ -104,10 +104,10 @@ namespace YourProjectWebApp.Models
             }
         }
 
-        public static bool Delete(long id)
+        public static bool Delete(int id)
         {
             // Attaches the Api String and Tool and sends a Delete Request
-            using (var deleteTask = ApiConnection.YourProjectApiClient.DeleteAsync(Url + id.ToString()))
+            using (var deleteTask = ApiConnection.YourProjectApiClient.DeleteAsync(Url + id))
             {
                 //waits for response
                 deleteTask.Wait();
