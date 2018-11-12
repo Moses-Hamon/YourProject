@@ -6,7 +6,10 @@
 }
 
 <h2>Index</h2>
-
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -49,8 +52,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ToolId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ToolId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ToolId })
+            @Html.ActionLink("Details", "Details", new {id = item.ToolId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ToolId.ToString() })
         </td>
     </tr>
 }
