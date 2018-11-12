@@ -76,7 +76,7 @@ namespace YourProjectWebService.Controllers.Api
                     // updates the object with the new id and returns it
                     if (db.LastInsertRowId > 0)
                     {
-                        tool.ToolId = db.LastInsertRowId;
+                        tool.ToolId = (int) db.LastInsertRowId;
                     }
                     //commits the transaction
                     trans.Commit();

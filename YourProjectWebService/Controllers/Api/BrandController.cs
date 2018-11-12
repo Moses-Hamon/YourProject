@@ -62,7 +62,7 @@ namespace YourProjectWebService.Controllers.Api
                 {
                     var results = db.Execute(QueryInsertInto, brand, trans);
                     if (db.LastInsertRowId > 0)
-                        brand.BrandId = db.LastInsertRowId;
+                        brand.BrandId = (int) db.LastInsertRowId;
                     trans.Commit();
                     return Ok(brand);
                 }

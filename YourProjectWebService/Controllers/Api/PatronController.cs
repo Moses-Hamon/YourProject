@@ -71,7 +71,7 @@ namespace YourProjectWebService.Controllers.Api
                     var results = db.Execute(QueryInsertInto, patron, trans);
                     if (db.LastInsertRowId > 0)
                     {
-                        patron.PatronId = db.LastInsertRowId;
+                        patron.PatronId = (int) db.LastInsertRowId;
                     }
 
                     trans.Commit();
