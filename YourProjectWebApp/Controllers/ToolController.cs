@@ -29,7 +29,7 @@ namespace YourProjectWebApp.Controllers
 
             var viewModel = new ToolBrandViewModel()
             {
-                Brands = ToolBrandViewModel.Convert(brands),
+                Brands = Brand.Convert(brands),
                 
             };
 
@@ -38,14 +38,20 @@ namespace YourProjectWebApp.Controllers
 
         // POST: Create
         [HttpPost]
-        public ActionResult Create(Tool tool)
+        public async Task<ActionResult> Create(Tool tool)
         {
-
-
-            if (!ModelState.IsValid)
+            var viewModel = new ToolBrandViewModel()
             {
-                return View(tool);
+                Tool = tool,
+                Brands = Brand.Convert(await Brand.GetAll())
+            };
+            // check for null value
+            if (viewModel.Tool.BrandId.Equals(null) || !ModelState.IsValid)
+            {
+                ModelState.AddModelError("BrandId", "Please Select a brand");
+                return View(viewModel);
             }
+            
             //receives request
             //runs create via API
             if (Tool.Create(tool))

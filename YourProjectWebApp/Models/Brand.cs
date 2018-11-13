@@ -132,5 +132,26 @@ namespace YourProjectWebApp.Models
                 return result.IsSuccessStatusCode;
             }
         }
+
+
+        public static IEnumerable<SelectListItem> Convert(IEnumerable<Brand> brands)
+        {
+            var list = new List<SelectListItem>()
+            {
+                new SelectListItem(){ Text = "Please Select", Value = null, Selected = true}
+            };
+
+            foreach (var brand in brands)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = brand.BrandName,
+                    Value = brand.BrandId.ToString()
+                });
+            }
+
+            return list;
+
+        }
     }
 }
