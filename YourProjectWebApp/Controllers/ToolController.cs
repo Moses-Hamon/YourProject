@@ -16,26 +16,32 @@ namespace YourProjectWebApp.Controllers
         public async Task<ActionResult> Index()
         {
             var tools = await Tool.GetAll();
-            var brands = await Brand.GetAll();
-
-            var viewModel = new ToolViewModel()
-            {
-                Tool = tools,
-                Brands = ToolViewModel.Convert(brands)
-            };
-            return View(viewModel);
+            
+            return View(tools);
         }
 
         // GET: Create
-        public ActionResult Create()
-        {
-            return View();
+        public async Task<ActionResult> Create()
+        { 
+            // Grabs all available Brands
+            var brands = await Brand.GetAll();
+
+
+            var viewModel = new ToolBrandViewModel()
+            {
+                Brands = ToolBrandViewModel.Convert(brands),
+                
+            };
+
+            return View(viewModel);
         }
 
         // POST: Create
         [HttpPost]
         public ActionResult Create(Tool tool)
         {
+
+
             if (!ModelState.IsValid)
             {
                 return View(tool);

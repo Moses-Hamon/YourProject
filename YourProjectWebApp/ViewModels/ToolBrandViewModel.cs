@@ -7,17 +7,17 @@ using YourProjectWebApp.Models;
 
 namespace YourProjectWebApp.ViewModels
 {
-    public class ToolViewModel
+    public class ToolBrandViewModel
     {
-        
-        public IEnumerable<Tool> Tool { get; set; }
+
+        public Tool Tool { get; set; }
         public IEnumerable<SelectListItem> Brands { get; set; }
 
 
         public static IEnumerable<SelectListItem> Convert(IEnumerable<Brand> brands)
         {
             var list = new List<SelectListItem>();
-            foreach (Brand brand in brands)
+            foreach (var brand in brands)
             {
                 list.Add(new SelectListItem()
                 {

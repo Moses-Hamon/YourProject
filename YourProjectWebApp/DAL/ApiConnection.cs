@@ -21,5 +21,6 @@ namespace YourProjectWebApp.DAL
             YourProjectApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+
     }
 }

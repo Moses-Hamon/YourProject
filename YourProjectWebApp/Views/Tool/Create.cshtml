@@ -1,4 +1,4 @@
-﻿@model YourProjectWebApp.Models.Tool
+﻿@model YourProjectWebApp.ViewModels.ToolBrandViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -16,45 +16,45 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tool.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BrandId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Brands, Model.Brands)
+                @Html.ValidationMessageFor(model => model.Tool.BrandId, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tool.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Tool.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tool.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tool.Active, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Active)
-                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Tool.Active)
+                    @Html.ValidationMessageFor(model => model.Tool.Active, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tool.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Tool.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tool.Comments, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InUse, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tool.InUse, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.InUse)
-                    @Html.ValidationMessageFor(model => model.InUse, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Tool.InUse)
+                    @Html.ValidationMessageFor(model => model.Tool.InUse, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

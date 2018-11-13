@@ -1,5 +1,4 @@
-﻿@using YourProjectWebApp.Models
-@model YourProjectWebApp.ViewModels.ToolViewModel
+﻿@model IEnumerable<YourProjectWebApp.Models.Tool>
 
 @{
     ViewBag.Title = "Index";
@@ -14,50 +13,50 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tool.GetEnumerator().Current.BrandId)
+            @Html.DisplayNameFor(model => model.BrandId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tool.GetEnumerator().Current.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tool.GetEnumerator().Current.Active)
+            @Html.DisplayNameFor(model => model.Active)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tool.GetEnumerator().Current.Comments)
+            @Html.DisplayNameFor(model => model.Comments)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tool.GetEnumerator().Current.InUse)
+            @Html.DisplayNameFor(model => model.InUse)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model.Tool) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrandId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InUse)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ToolId }) |
-            @Html.ActionLink("Details", "Details", new {id = item.ToolId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ToolId.ToString() })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InUse)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ToolId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ToolId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ToolId })
+            </td>
+        </tr>
+    }
 
 </table>
