@@ -15,10 +15,10 @@ namespace YourProjectWebApp.Controllers
         {
             //create a new client
             var svc = new YourProjectServiceSoapClient();
-            // call method from service
-            var data = svc.GetAllTools();
+            // populate 
+            var tools = svc.GetAllTools();
             //return data
-            return View(data);
+            return View(tools);
         }
 
         // GET: Tool/Details/5
@@ -36,7 +36,7 @@ namespace YourProjectWebApp.Controllers
             else
             {
                 ModelState.AddModelError(string.Empty, "Item Does not Exist");
-                return View("Index");
+                return RedirectToAction("Index");
             }
         }
 
@@ -44,9 +44,9 @@ namespace YourProjectWebApp.Controllers
         public ActionResult Create()
         {
             var svc = new YourProjectServiceSoapClient();
-            var viewModel = new ToolBrandViewModel()
+            var viewModel = new ToolBrandFormViewModel()
             {
-                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands())
+                Brands = svc.GetAllBrands()
             };
             return View(viewModel);
         }
@@ -58,10 +58,10 @@ namespace YourProjectWebApp.Controllers
             // create connection to server
             var svc = new YourProjectServiceSoapClient();
 
-            var viewModel = new ToolBrandViewModel()
+            var viewModel = new ToolBrandFormViewModel()
             {
                 Tool = tool,
-                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands())
+                Brands = svc.GetAllBrands()
             }; 
             // check model
             if (!ModelState.IsValid)
@@ -102,10 +102,10 @@ namespace YourProjectWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            var viewModel = new ToolBrandViewModel()
+            var viewModel = new ToolBrandFormViewModel()
             {
                 Tool = tool,
-                Brands = ToolBrandViewModel.ConvertForDropDownList(brands)
+                Brands = brands
             };
             return View(viewModel);
         }
@@ -116,9 +116,9 @@ namespace YourProjectWebApp.Controllers
         {
             //open connection
             var svc = new YourProjectServiceSoapClient();
-            var viewModel = new ToolBrandViewModel()
+            var viewModel = new ToolBrandFormViewModel()
             {
-                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands()),
+                Brands = svc.GetAllBrands(),
                 Tool = tool
             };
             // check for validation
