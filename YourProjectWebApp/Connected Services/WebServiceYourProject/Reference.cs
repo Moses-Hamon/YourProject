@@ -72,6 +72,7 @@ namespace YourProjectWebApp.WebServiceYourProject {
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(YourProjectWebApp.WebServiceYourProject.Tool))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(YourProjectWebApp.WebServiceYourProject.Brand))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(YourProjectWebApp.WebServiceYourProject.Patron))]
     public partial class CRUDMethods : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -235,6 +236,106 @@ namespace YourProjectWebApp.WebServiceYourProject {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PatronToolLoanInvoice", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class PatronToolLoanInvoice : YourProjectWebApp.WebServiceYourProject.CRUDMethods {
+        
+        private long IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private YourProjectWebApp.WebServiceYourProject.Tool ToolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private YourProjectWebApp.WebServiceYourProject.Patron PatronField;
+        
+        private System.DateTime DateRentedField;
+        
+        private System.DateTime DateReturnedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WorkspaceField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public long Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public YourProjectWebApp.WebServiceYourProject.Tool Tool {
+            get {
+                return this.ToolField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ToolField, value) != true)) {
+                    this.ToolField = value;
+                    this.RaisePropertyChanged("Tool");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public YourProjectWebApp.WebServiceYourProject.Patron Patron {
+            get {
+                return this.PatronField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PatronField, value) != true)) {
+                    this.PatronField = value;
+                    this.RaisePropertyChanged("Patron");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public System.DateTime DateRented {
+            get {
+                return this.DateRentedField;
+            }
+            set {
+                if ((this.DateRentedField.Equals(value) != true)) {
+                    this.DateRentedField = value;
+                    this.RaisePropertyChanged("DateRented");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public System.DateTime DateReturned {
+            get {
+                return this.DateReturnedField;
+            }
+            set {
+                if ((this.DateReturnedField.Equals(value) != true)) {
+                    this.DateReturnedField = value;
+                    this.RaisePropertyChanged("DateReturned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string Workspace {
+            get {
+                return this.WorkspaceField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WorkspaceField, value) != true)) {
+                    this.WorkspaceField = value;
+                    this.RaisePropertyChanged("Workspace");
+                }
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WebServiceYourProject.YourProjectServiceSoap")]
     public interface YourProjectServiceSoap {
@@ -340,6 +441,40 @@ namespace YourProjectWebApp.WebServiceYourProject {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeleteBrand", ReplyAction="*")]
         System.Threading.Tasks.Task<bool> DeleteBrandAsync(int id);
+        
+        // CODEGEN: Generating message contract since element name GetAllInvoicesResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllInvoices", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse GetAllInvoices(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllInvoices", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse> GetAllInvoicesAsync(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetSinglePatronToolLoanInvoiceResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSinglePatronToolLoanInvoice", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse GetSinglePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSinglePatronToolLoanInvoice", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse> GetSinglePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request);
+        
+        // CODEGEN: Generating message contract since element name brand from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdatePatronToolLoanInvoice", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdatePatronToolLoanInvoice", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request);
+        
+        // CODEGEN: Generating message contract since element name brand from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreatePatronToolLoanInvoice", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreatePatronToolLoanInvoice", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse> CreatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeletePatronToolLoanInvoice", ReplyAction="*")]
+        bool DeletePatronToolLoanInvoice(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeletePatronToolLoanInvoice", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> DeletePatronToolLoanInvoiceAsync(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1137,6 +1272,271 @@ namespace YourProjectWebApp.WebServiceYourProject {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllInvoicesRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllInvoices", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequestBody Body;
+        
+        public GetAllInvoicesRequest() {
+        }
+        
+        public GetAllInvoicesRequest(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetAllInvoicesRequestBody {
+        
+        public GetAllInvoicesRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllInvoicesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllInvoicesResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponseBody Body;
+        
+        public GetAllInvoicesResponse() {
+        }
+        
+        public GetAllInvoicesResponse(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllInvoicesResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoicesResult;
+        
+        public GetAllInvoicesResponseBody() {
+        }
+        
+        public GetAllInvoicesResponseBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoicesResult) {
+            this.GetAllInvoicesResult = GetAllInvoicesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSinglePatronToolLoanInvoiceRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSinglePatronToolLoanInvoice", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequestBody Body;
+        
+        public GetSinglePatronToolLoanInvoiceRequest() {
+        }
+        
+        public GetSinglePatronToolLoanInvoiceRequest(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSinglePatronToolLoanInvoiceRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int id;
+        
+        public GetSinglePatronToolLoanInvoiceRequestBody() {
+        }
+        
+        public GetSinglePatronToolLoanInvoiceRequestBody(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetSinglePatronToolLoanInvoiceResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSinglePatronToolLoanInvoiceResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponseBody Body;
+        
+        public GetSinglePatronToolLoanInvoiceResponse() {
+        }
+        
+        public GetSinglePatronToolLoanInvoiceResponse(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetSinglePatronToolLoanInvoiceResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice GetSinglePatronToolLoanInvoiceResult;
+        
+        public GetSinglePatronToolLoanInvoiceResponseBody() {
+        }
+        
+        public GetSinglePatronToolLoanInvoiceResponseBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice GetSinglePatronToolLoanInvoiceResult) {
+            this.GetSinglePatronToolLoanInvoiceResult = GetSinglePatronToolLoanInvoiceResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdatePatronToolLoanInvoiceRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdatePatronToolLoanInvoice", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody Body;
+        
+        public UpdatePatronToolLoanInvoiceRequest() {
+        }
+        
+        public UpdatePatronToolLoanInvoiceRequest(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdatePatronToolLoanInvoiceRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand;
+        
+        public UpdatePatronToolLoanInvoiceRequestBody() {
+        }
+        
+        public UpdatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            this.brand = brand;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdatePatronToolLoanInvoiceResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdatePatronToolLoanInvoiceResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponseBody Body;
+        
+        public UpdatePatronToolLoanInvoiceResponse() {
+        }
+        
+        public UpdatePatronToolLoanInvoiceResponse(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdatePatronToolLoanInvoiceResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice UpdatePatronToolLoanInvoiceResult;
+        
+        public UpdatePatronToolLoanInvoiceResponseBody() {
+        }
+        
+        public UpdatePatronToolLoanInvoiceResponseBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice UpdatePatronToolLoanInvoiceResult) {
+            this.UpdatePatronToolLoanInvoiceResult = UpdatePatronToolLoanInvoiceResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CreatePatronToolLoanInvoiceRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreatePatronToolLoanInvoice", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody Body;
+        
+        public CreatePatronToolLoanInvoiceRequest() {
+        }
+        
+        public CreatePatronToolLoanInvoiceRequest(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CreatePatronToolLoanInvoiceRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand;
+        
+        public CreatePatronToolLoanInvoiceRequestBody() {
+        }
+        
+        public CreatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            this.brand = brand;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CreatePatronToolLoanInvoiceResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CreatePatronToolLoanInvoiceResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponseBody Body;
+        
+        public CreatePatronToolLoanInvoiceResponse() {
+        }
+        
+        public CreatePatronToolLoanInvoiceResponse(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CreatePatronToolLoanInvoiceResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice CreatePatronToolLoanInvoiceResult;
+        
+        public CreatePatronToolLoanInvoiceResponseBody() {
+        }
+        
+        public CreatePatronToolLoanInvoiceResponseBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice CreatePatronToolLoanInvoiceResult) {
+            this.CreatePatronToolLoanInvoiceResult = CreatePatronToolLoanInvoiceResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface YourProjectServiceSoapChannel : YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1480,6 +1880,112 @@ namespace YourProjectWebApp.WebServiceYourProject {
         
         public System.Threading.Tasks.Task<bool> DeleteBrandAsync(int id) {
             return base.Channel.DeleteBrandAsync(id);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllInvoices(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest request) {
+            return base.Channel.GetAllInvoices(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoices() {
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequestBody();
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllInvoices(inValue);
+            return retVal.Body.GetAllInvoicesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllInvoicesAsync(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest request) {
+            return base.Channel.GetAllInvoicesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse> GetAllInvoicesAsync() {
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequestBody();
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllInvoicesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetSinglePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request) {
+            return base.Channel.GetSinglePatronToolLoanInvoice(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice GetSinglePatronToolLoanInvoice(int id) {
+            YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequestBody();
+            inValue.Body.id = id;
+            YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetSinglePatronToolLoanInvoice(inValue);
+            return retVal.Body.GetSinglePatronToolLoanInvoiceResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetSinglePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request) {
+            return base.Channel.GetSinglePatronToolLoanInvoiceAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse> GetSinglePatronToolLoanInvoiceAsync(int id) {
+            YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequestBody();
+            inValue.Body.id = id;
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetSinglePatronToolLoanInvoiceAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request) {
+            return base.Channel.UpdatePatronToolLoanInvoice(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody();
+            inValue.Body.brand = brand;
+            YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).UpdatePatronToolLoanInvoice(inValue);
+            return retVal.Body.UpdatePatronToolLoanInvoiceResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request) {
+            return base.Channel.UpdatePatronToolLoanInvoiceAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody();
+            inValue.Body.brand = brand;
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).UpdatePatronToolLoanInvoiceAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest request) {
+            return base.Channel.CreatePatronToolLoanInvoice(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody();
+            inValue.Body.brand = brand;
+            YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).CreatePatronToolLoanInvoice(inValue);
+            return retVal.Body.CreatePatronToolLoanInvoiceResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.CreatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest request) {
+            return base.Channel.CreatePatronToolLoanInvoiceAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse> CreatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+            YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody();
+            inValue.Body.brand = brand;
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).CreatePatronToolLoanInvoiceAsync(inValue);
+        }
+        
+        public bool DeletePatronToolLoanInvoice(int id) {
+            return base.Channel.DeletePatronToolLoanInvoice(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeletePatronToolLoanInvoiceAsync(int id) {
+            return base.Channel.DeletePatronToolLoanInvoiceAsync(id);
         }
     }
 }

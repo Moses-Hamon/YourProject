@@ -251,6 +251,91 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAllInvoices">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllInvoicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllInvoicesResult" type="tns:ArrayOfPatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPatronToolLoanInvoice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PatronToolLoanInvoice" nillable="true" type="tns:PatronToolLoanInvoice" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PatronToolLoanInvoice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CRUDMethods">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Tool" type="tns:Tool" />
+              <s:element minOccurs="0" maxOccurs="1" name="Patron" type="tns:Patron" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateRented" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="DateReturned" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Workspace" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSinglePatronToolLoanInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSinglePatronToolLoanInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSinglePatronToolLoanInvoiceResult" type="tns:PatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePatronToolLoanInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brand" type="tns:PatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePatronToolLoanInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePatronToolLoanInvoiceResult" type="tns:PatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePatronToolLoanInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brand" type="tns:PatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePatronToolLoanInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePatronToolLoanInvoiceResult" type="tns:PatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePatronToolLoanInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePatronToolLoanInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletePatronToolLoanInvoiceResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllPatronsSoapIn">
@@ -343,6 +428,36 @@
   <wsdl:message name="DeleteBrandSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteBrandResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllInvoicesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllInvoices" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInvoicesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllInvoicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSinglePatronToolLoanInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSinglePatronToolLoanInvoice" />
+  </wsdl:message>
+  <wsdl:message name="GetSinglePatronToolLoanInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSinglePatronToolLoanInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatronToolLoanInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePatronToolLoanInvoice" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatronToolLoanInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePatronToolLoanInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatronToolLoanInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePatronToolLoanInvoice" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatronToolLoanInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePatronToolLoanInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatronToolLoanInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePatronToolLoanInvoice" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatronToolLoanInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePatronToolLoanInvoiceResponse" />
+  </wsdl:message>
   <wsdl:portType name="YourProjectServiceSoap">
     <wsdl:operation name="GetAllPatrons">
       <wsdl:input message="tns:GetAllPatronsSoapIn" />
@@ -403,6 +518,26 @@
     <wsdl:operation name="DeleteBrand">
       <wsdl:input message="tns:DeleteBrandSoapIn" />
       <wsdl:output message="tns:DeleteBrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvoices">
+      <wsdl:input message="tns:GetAllInvoicesSoapIn" />
+      <wsdl:output message="tns:GetAllInvoicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatronToolLoanInvoice">
+      <wsdl:input message="tns:GetSinglePatronToolLoanInvoiceSoapIn" />
+      <wsdl:output message="tns:GetSinglePatronToolLoanInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatronToolLoanInvoice">
+      <wsdl:input message="tns:UpdatePatronToolLoanInvoiceSoapIn" />
+      <wsdl:output message="tns:UpdatePatronToolLoanInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatronToolLoanInvoice">
+      <wsdl:input message="tns:CreatePatronToolLoanInvoiceSoapIn" />
+      <wsdl:output message="tns:CreatePatronToolLoanInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatronToolLoanInvoice">
+      <wsdl:input message="tns:DeletePatronToolLoanInvoiceSoapIn" />
+      <wsdl:output message="tns:DeletePatronToolLoanInvoiceSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="YourProjectServiceSoap" type="tns:YourProjectServiceSoap">
@@ -542,6 +677,51 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllInvoices">
+      <soap:operation soapAction="http://tempuri.org/GetAllInvoices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatronToolLoanInvoice">
+      <soap:operation soapAction="http://tempuri.org/GetSinglePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatronToolLoanInvoice">
+      <soap:operation soapAction="http://tempuri.org/UpdatePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatronToolLoanInvoice">
+      <soap:operation soapAction="http://tempuri.org/CreatePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatronToolLoanInvoice">
+      <soap:operation soapAction="http://tempuri.org/DeletePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="YourProjectServiceSoap12" type="tns:YourProjectServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -673,6 +853,51 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteBrand">
       <soap12:operation soapAction="http://tempuri.org/DeleteBrand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvoices">
+      <soap12:operation soapAction="http://tempuri.org/GetAllInvoices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatronToolLoanInvoice">
+      <soap12:operation soapAction="http://tempuri.org/GetSinglePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatronToolLoanInvoice">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatronToolLoanInvoice">
+      <soap12:operation soapAction="http://tempuri.org/CreatePatronToolLoanInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatronToolLoanInvoice">
+      <soap12:operation soapAction="http://tempuri.org/DeletePatronToolLoanInvoice" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

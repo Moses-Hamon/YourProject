@@ -152,6 +152,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatronController.cs" />
     <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\ToolLoanInvoiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -482,6 +483,21 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -540,6 +556,7 @@
     <Content Include="Views\Brand\Edit.cshtml" />
     <Content Include="Views\Brand\Delete.cshtml" />
     <Content Include="Views\Tool\Index.cshtml" />
+    <Content Include="Views\ToolLoanInvoice\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
