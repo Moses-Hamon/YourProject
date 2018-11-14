@@ -244,11 +244,9 @@ namespace YourProjectWebApp.WebServiceYourProject {
         
         private long IdField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private YourProjectWebApp.WebServiceYourProject.Tool ToolField;
+        private int ToolIdField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private YourProjectWebApp.WebServiceYourProject.Patron PatronField;
+        private int PatronIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DateRentedField;
@@ -272,28 +270,28 @@ namespace YourProjectWebApp.WebServiceYourProject {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public YourProjectWebApp.WebServiceYourProject.Tool Tool {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int ToolId {
             get {
-                return this.ToolField;
+                return this.ToolIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.ToolField, value) != true)) {
-                    this.ToolField = value;
-                    this.RaisePropertyChanged("Tool");
+                if ((this.ToolIdField.Equals(value) != true)) {
+                    this.ToolIdField = value;
+                    this.RaisePropertyChanged("ToolId");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
-        public YourProjectWebApp.WebServiceYourProject.Patron Patron {
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public int PatronId {
             get {
-                return this.PatronField;
+                return this.PatronIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.PatronField, value) != true)) {
-                    this.PatronField = value;
-                    this.RaisePropertyChanged("Patron");
+                if ((this.PatronIdField.Equals(value) != true)) {
+                    this.PatronIdField = value;
+                    this.RaisePropertyChanged("PatronId");
                 }
             }
         }
@@ -458,14 +456,14 @@ namespace YourProjectWebApp.WebServiceYourProject {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSinglePatronToolLoanInvoice", ReplyAction="*")]
         System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse> GetSinglePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request);
         
-        // CODEGEN: Generating message contract since element name brand from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name invoice from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdatePatronToolLoanInvoice", ReplyAction="*")]
         YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdatePatronToolLoanInvoice", ReplyAction="*")]
         System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest request);
         
-        // CODEGEN: Generating message contract since element name brand from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name invoice from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CreatePatronToolLoanInvoice", ReplyAction="*")]
         YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest request);
         
@@ -1427,13 +1425,13 @@ namespace YourProjectWebApp.WebServiceYourProject {
     public partial class UpdatePatronToolLoanInvoiceRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand;
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice;
         
         public UpdatePatronToolLoanInvoiceRequestBody() {
         }
         
-        public UpdatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
-            this.brand = brand;
+        public UpdatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
+            this.invoice = invoice;
         }
     }
     
@@ -1495,13 +1493,13 @@ namespace YourProjectWebApp.WebServiceYourProject {
     public partial class CreatePatronToolLoanInvoiceRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand;
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice;
         
         public CreatePatronToolLoanInvoiceRequestBody() {
         }
         
-        public CreatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
-            this.brand = brand;
+        public CreatePatronToolLoanInvoiceRequestBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
+            this.invoice = invoice;
         }
     }
     
@@ -1937,10 +1935,10 @@ namespace YourProjectWebApp.WebServiceYourProject {
             return base.Channel.UpdatePatronToolLoanInvoice(request);
         }
         
-        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice UpdatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
             YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody();
-            inValue.Body.brand = brand;
+            inValue.Body.invoice = invoice;
             YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).UpdatePatronToolLoanInvoice(inValue);
             return retVal.Body.UpdatePatronToolLoanInvoiceResult;
         }
@@ -1950,10 +1948,10 @@ namespace YourProjectWebApp.WebServiceYourProject {
             return base.Channel.UpdatePatronToolLoanInvoiceAsync(request);
         }
         
-        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse> UpdatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
             YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceRequestBody();
-            inValue.Body.brand = brand;
+            inValue.Body.invoice = invoice;
             return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).UpdatePatronToolLoanInvoiceAsync(inValue);
         }
         
@@ -1962,10 +1960,10 @@ namespace YourProjectWebApp.WebServiceYourProject {
             return base.Channel.CreatePatronToolLoanInvoice(request);
         }
         
-        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice CreatePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
             YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody();
-            inValue.Body.brand = brand;
+            inValue.Body.invoice = invoice;
             YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).CreatePatronToolLoanInvoice(inValue);
             return retVal.Body.CreatePatronToolLoanInvoiceResult;
         }
@@ -1975,10 +1973,10 @@ namespace YourProjectWebApp.WebServiceYourProject {
             return base.Channel.CreatePatronToolLoanInvoiceAsync(request);
         }
         
-        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse> CreatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice brand) {
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse> CreatePatronToolLoanInvoiceAsync(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice invoice) {
             YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest inValue = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceRequestBody();
-            inValue.Body.brand = brand;
+            inValue.Body.invoice = invoice;
             return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).CreatePatronToolLoanInvoiceAsync(inValue);
         }
         

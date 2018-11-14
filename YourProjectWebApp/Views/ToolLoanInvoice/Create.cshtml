@@ -16,18 +16,18 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.PatronToolLoanInvoice.Patron, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PatronToolLoanInvoice.ToolId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.PatronToolLoanInvoice.Tool.Id, new SelectList(Model.Tools, "Id", "Description" ), "Select A Tool", new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PatronToolLoanInvoice.Tool.Id, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.PatronToolLoanInvoice.ToolId, new SelectList(Model.Tools, "Id", "Description" ), "Select A Tool", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PatronToolLoanInvoice.ToolId, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.PatronToolLoanInvoice.Patron, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PatronToolLoanInvoice.PatronId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.PatronToolLoanInvoice.Patron.Id, new SelectList(Model.Patrons, "Id", "PatronName"), "Select A Patron", new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PatronToolLoanInvoice.Patron.Id, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.PatronToolLoanInvoice.PatronId, new SelectList(Model.Patrons, "Id", "PatronName"), "Select A Patron", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PatronToolLoanInvoice.PatronId, "", new { @class = "text-danger" })
         </div>
     </div>
 

@@ -14,9 +14,15 @@ namespace YourProjectWebApp.Controllers
         public ActionResult Index()
         {
             var svc = new YourProjectServiceSoapClient();
-            var model = svc.GetAllInvoices();
+            var viewModel = new InvoiceIndexViewModel
+            {
+                PatronToolLoanInvoices = svc.GetAllInvoices(),
+                Tools = svc.GetAllTools(),
+                Patrons = svc.GetAllPatrons()
+            };
+            
 
-            return View(model);
+            return View(viewModel);
         }
 
         // GET: ToolLoanInvoice/Details/5
@@ -39,31 +45,26 @@ namespace YourProjectWebApp.Controllers
 
         // POST: ToolLoanInvoice/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateInvoiceViewModel model)
         {
             var svc = new YourProjectServiceSoapClient();
+            
+            var result = svc.CreatePatronToolLoanInvoice(model.PatronToolLoanInvoice);
 
-            var invoice = new PatronToolLoanInvoice
-            {
-                Tool = svc.GetSingleTool(int.Parse(collection[1])),
-                Patron = svc.GetSinglePatron(int.Parse(collection[2])),
-                DateRented = collection[3],
-                DateReturned = "",
-                Workspace = collection[4]
-            };
+            //var viewModel = new CreateInvoiceViewModel
+            //{
+            //    PatronToolLoanInvoice = result,
+            //    Tools = svc.GetAllTools(),
+            //    Patrons = svc.GetAllPatrons()
+            //};
 
-            var result = svc.CreatePatronToolLoanInvoice(invoice);
-            var viewModel = new CreateInvoiceViewModel
-            {
-                PatronToolLoanInvoice = result,
-                Tools = svc.GetAllTools(),
-                Patrons = svc.GetAllPatrons()
-            };
+            model.Tools = svc.GetAllTools();
+            model.Patrons = svc.GetAllPatrons();
             
             if (result == null)
             {
                 ModelState.AddModelError(string.Empty,"Error Creating Invoice");
-                return View(viewModel);
+                return View(model);
             }
             else
             {
