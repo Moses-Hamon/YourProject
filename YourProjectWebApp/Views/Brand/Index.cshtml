@@ -1,7 +1,8 @@
-﻿@model IEnumerable<YourProjectWebApp.WebServiceYourProject.Patron>
+﻿@model IEnumerable<YourProjectWebApp.WebServiceYourProject.Brand>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -12,10 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PatronName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsGroup)
+            @Html.DisplayNameFor(model => model.BrandName)
         </th>
         <th></th>
     </tr>
@@ -23,10 +21,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.PatronName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsGroup)
+            @Html.DisplayFor(modelItem => item.BrandName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

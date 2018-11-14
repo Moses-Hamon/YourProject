@@ -21,18 +21,20 @@
             @Html.ActionLink("Patrons", "Index", "Patron", new { area = "" }, null)
         </li>
         <li class="nav-item mx-5">
-            @Html.ActionLink("Brand", "Index", "Brand", new { area = "" }, null)
+            @Html.ActionLink("Tools", "Index", "Tool", new { area = "" }, null)
         </li>
     </ul>
 </nav>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    <br/>
+    <h4 class="alert-success font-weight-bold">@TempData["Success"]</h4>
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

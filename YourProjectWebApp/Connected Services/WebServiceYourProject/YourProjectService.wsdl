@@ -85,6 +85,172 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAllTools">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllToolsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllToolsResult" type="tns:ArrayOfTool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTool">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tool" nillable="true" type="tns:Tool" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Tool">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CRUDMethods">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="BrandId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="InUse" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSingleTool">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleToolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSingleToolResult" type="tns:Tool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTool">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tool" type="tns:Tool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateToolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateToolResult" type="tns:Tool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTool">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tool" type="tns:Tool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateToolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateToolResult" type="tns:Tool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTool">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteToolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteToolResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllBrands">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBrandsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBrandsResult" type="tns:ArrayOfBrand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBrand">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Brand" nillable="true" type="tns:Brand" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Brand">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CRUDMethods">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="BrandName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetSingleBrand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSingleBrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSingleBrandResult" type="tns:Brand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBrand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brand" type="tns:Brand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateBrandResult" type="tns:Brand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBrand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brand" type="tns:Brand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateBrandResult" type="tns:Brand" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBrand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteBrandResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllPatronsSoapIn">
@@ -117,6 +283,66 @@
   <wsdl:message name="DeletePatronSoapOut">
     <wsdl:part name="parameters" element="tns:DeletePatronResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllToolsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTools" />
+  </wsdl:message>
+  <wsdl:message name="GetAllToolsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllToolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleToolSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSingleTool" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleToolSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSingleToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateToolSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTool" />
+  </wsdl:message>
+  <wsdl:message name="UpdateToolSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateToolSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTool" />
+  </wsdl:message>
+  <wsdl:message name="CreateToolSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteToolSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTool" />
+  </wsdl:message>
+  <wsdl:message name="DeleteToolSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteToolResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrandsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBrands" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrandsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBrandsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleBrandSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSingleBrand" />
+  </wsdl:message>
+  <wsdl:message name="GetSingleBrandSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSingleBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBrandSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBrand" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBrandSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateBrandSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateBrand" />
+  </wsdl:message>
+  <wsdl:message name="CreateBrandSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBrandSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBrand" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBrandSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBrandResponse" />
+  </wsdl:message>
   <wsdl:portType name="YourProjectServiceSoap">
     <wsdl:operation name="GetAllPatrons">
       <wsdl:input message="tns:GetAllPatronsSoapIn" />
@@ -137,6 +363,46 @@
     <wsdl:operation name="DeletePatron">
       <wsdl:input message="tns:DeletePatronSoapIn" />
       <wsdl:output message="tns:DeletePatronSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTools">
+      <wsdl:input message="tns:GetAllToolsSoapIn" />
+      <wsdl:output message="tns:GetAllToolsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTool">
+      <wsdl:input message="tns:GetSingleToolSoapIn" />
+      <wsdl:output message="tns:GetSingleToolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTool">
+      <wsdl:input message="tns:UpdateToolSoapIn" />
+      <wsdl:output message="tns:UpdateToolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTool">
+      <wsdl:input message="tns:CreateToolSoapIn" />
+      <wsdl:output message="tns:CreateToolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTool">
+      <wsdl:input message="tns:DeleteToolSoapIn" />
+      <wsdl:output message="tns:DeleteToolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <wsdl:input message="tns:GetAllBrandsSoapIn" />
+      <wsdl:output message="tns:GetAllBrandsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleBrand">
+      <wsdl:input message="tns:GetSingleBrandSoapIn" />
+      <wsdl:output message="tns:GetSingleBrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBrand">
+      <wsdl:input message="tns:UpdateBrandSoapIn" />
+      <wsdl:output message="tns:UpdateBrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBrand">
+      <wsdl:input message="tns:CreateBrandSoapIn" />
+      <wsdl:output message="tns:CreateBrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBrand">
+      <wsdl:input message="tns:DeleteBrandSoapIn" />
+      <wsdl:output message="tns:DeleteBrandSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="YourProjectServiceSoap" type="tns:YourProjectServiceSoap">
@@ -186,6 +452,96 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllTools">
+      <soap:operation soapAction="http://tempuri.org/GetAllTools" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTool">
+      <soap:operation soapAction="http://tempuri.org/GetSingleTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTool">
+      <soap:operation soapAction="http://tempuri.org/UpdateTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTool">
+      <soap:operation soapAction="http://tempuri.org/CreateTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTool">
+      <soap:operation soapAction="http://tempuri.org/DeleteTool" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <soap:operation soapAction="http://tempuri.org/GetAllBrands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleBrand">
+      <soap:operation soapAction="http://tempuri.org/GetSingleBrand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBrand">
+      <soap:operation soapAction="http://tempuri.org/UpdateBrand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBrand">
+      <soap:operation soapAction="http://tempuri.org/CreateBrand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBrand">
+      <soap:operation soapAction="http://tempuri.org/DeleteBrand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="YourProjectServiceSoap12" type="tns:YourProjectServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -227,6 +583,96 @@
     </wsdl:operation>
     <wsdl:operation name="DeletePatron">
       <soap12:operation soapAction="http://tempuri.org/DeletePatron" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTools">
+      <soap12:operation soapAction="http://tempuri.org/GetAllTools" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleTool">
+      <soap12:operation soapAction="http://tempuri.org/GetSingleTool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTool">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTool">
+      <soap12:operation soapAction="http://tempuri.org/CreateTool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTool">
+      <soap12:operation soapAction="http://tempuri.org/DeleteTool" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <soap12:operation soapAction="http://tempuri.org/GetAllBrands" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleBrand">
+      <soap12:operation soapAction="http://tempuri.org/GetSingleBrand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBrand">
+      <soap12:operation soapAction="http://tempuri.org/UpdateBrand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBrand">
+      <soap12:operation soapAction="http://tempuri.org/CreateBrand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBrand">
+      <soap12:operation soapAction="http://tempuri.org/DeleteBrand" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

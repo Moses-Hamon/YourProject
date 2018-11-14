@@ -148,8 +148,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatronController.cs" />
+    <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +215,36 @@
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdatePatronResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreateToolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllToolsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSingleToolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Tool.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdateToolResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Brand.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreateBrandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllBrandsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSingleBrandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdateBrandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -261,6 +293,16 @@
     <Content Include="Views\Patron\Create.cshtml" />
     <Content Include="Views\Patron\Edit.cshtml" />
     <Content Include="Views\Patron\Delete.cshtml" />
+    <Content Include="Views\Tool\Index.cshtml" />
+    <Content Include="Views\Tool\Details.cshtml" />
+    <Content Include="Views\Tool\Create.cshtml" />
+    <Content Include="Views\Tool\Edit.cshtml" />
+    <Content Include="Views\Tool\Delete.cshtml" />
+    <Content Include="Views\Brand\Index.cshtml" />
+    <Content Include="Views\Brand\Details.cshtml" />
+    <Content Include="Views\Brand\Create.cshtml" />
+    <Content Include="Views\Brand\Edit.cshtml" />
+    <Content Include="Views\Brand\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

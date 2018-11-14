@@ -1,34 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using YourProjectWebApp.WebServiceYourProject;
 
 namespace YourProjectWebApp.Controllers
 {
-    public class PatronController : Controller
+    public class ToolController : Controller
     {
-        
-        // GET: Patron
+        // GET: Tool
         public ActionResult Index()
         {
             //create a new client
             var svc = new YourProjectServiceSoapClient();
             // call method from service
-            var data = svc.GetAllPatrons();
+            var data = svc.GetAllTools();
             //return data
             return View(data);
         }
 
-        // GET: Patron/Details/5
+        // GET: Tool/Details/5
         public ActionResult Details(int id)
         {
             // open soap client
             var svc = new YourProjectServiceSoapClient();
             // call method and save data
-            var data = svc.GetSinglePatron(id);
+            var data = svc.GetSingleTool(id);
             // check if there was an entry
             if (data != null)
             {
@@ -41,68 +39,68 @@ namespace YourProjectWebApp.Controllers
             }
         }
 
-        // GET: Patron/Create
+        // GET: Tool/Create
         public ActionResult Create()
         {
-            
             return View();
         }
 
-        // POST: Patron/Create
+        // POST: Tool/Create
         [HttpPost]
-        public ActionResult Create(Patron patron)
+        public ActionResult Create(Tool tool)
         {
+            // check model
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError(string.Empty, "Please enter valid properties");
-                return View(patron);
+                return View(tool);
             }
             // create connection to server
             var svc = new YourProjectServiceSoapClient();
             // create the tool
-            var results = svc.CreatePatron(patron);
+            var results = svc.CreateTool(tool);
             // check the tool
             if (results.Id == 0)
             {
-                ModelState.AddModelError(string.Empty , "The item was not Created please try again");
+                ModelState.AddModelError(string.Empty, "The item was not Created please try again");
                 return View(results);
             }
             else
             {
-                TempData["Success"] = "The Item was created";
+                TempData["Success"] = "The Item has been added!!!";
                 return RedirectToAction("Index");
             }
         }
 
-        // GET: Patron/Edit/5
+        // GET: Tool/Edit/5
         public ActionResult Edit(int id)
         {
             //create connection
             var svc = new YourProjectServiceSoapClient();
             // grab the tool
-            var patron = svc.GetSinglePatron(id);
+            var tool = svc.GetSingleTool(id);
             //check for null
-            if (patron == null)
+            if (tool == null)
             {
                 ModelState.AddModelError(string.Empty, "Patron does not exist");
                 return RedirectToAction("Index");
             }
-            return View(patron);
+            return View(tool);
         }
 
-        // POST: Patron/Edit/5
+        // POST: Tool/Edit/5
         [HttpPost]
-        public ActionResult Edit(Patron patron)
+        public ActionResult Edit(Tool tool)
         {
             // check for validation
             if (!ModelState.IsValid)
             {
-                return View(patron);
+                return View(tool);
             }
             //open connection
             var svc = new YourProjectServiceSoapClient();
             // Updates the item
-            var results = svc.UpdatePatron(patron);
+            var results = svc.UpdateTool(tool);
             // checks the item
             if (results != null)
             {
@@ -113,34 +111,33 @@ namespace YourProjectWebApp.Controllers
             ModelState.AddModelError(string.Empty, "Item was not updated");
             return View();
 
-
         }
 
-        // GET: Patron/Delete/5
+        // GET: Tool/Delete/5
         public ActionResult Delete(int id)
-        {
+        { 
             //open connection
             var svc = new YourProjectServiceSoapClient();
             // grabs item from database
-            var patron = svc.GetSinglePatron(id);
+            var tool = svc.GetSingleTool(id);
             // checks item
-            if (patron == null)
+            if (tool == null)
             {
-                ModelState.AddModelError(string.Empty, "Patron does not exist");
+                ModelState.AddModelError(string.Empty, "tool does not exist");
                 return RedirectToAction("Index");
             }
 
-            return View(patron);
+            return View(tool);
         }
 
-        // POST: Patron/Delete/5
+        // POST: Tool/Delete/5
         [HttpPost]
-        public ActionResult Delete(Patron patron)
+        public ActionResult Delete(Tool tool)
         {
             //connects to server
             var svc = new YourProjectServiceSoapClient();
             // Deletes the item
-            var results = svc.DeletePatron((int) patron.Id);
+            var results = svc.DeleteTool((int)tool.Id);
             // checks to see if the item was deleted
             if (results)
             {
@@ -150,7 +147,7 @@ namespace YourProjectWebApp.Controllers
             else
             {
                 ModelState.AddModelError(string.Empty, "Item could not be deleted.");
-                return View(patron);
+                return View(tool);
             }
         }
     }
