@@ -250,9 +250,11 @@ namespace YourProjectWebApp.WebServiceYourProject {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private YourProjectWebApp.WebServiceYourProject.Patron PatronField;
         
-        private System.DateTime DateRentedField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DateRentedField;
         
-        private System.DateTime DateReturnedField;
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DateReturnedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string WorkspaceField;
@@ -296,26 +298,26 @@ namespace YourProjectWebApp.WebServiceYourProject {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public System.DateTime DateRented {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string DateRented {
             get {
                 return this.DateRentedField;
             }
             set {
-                if ((this.DateRentedField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.DateRentedField, value) != true)) {
                     this.DateRentedField = value;
                     this.RaisePropertyChanged("DateRented");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public System.DateTime DateReturned {
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string DateReturned {
             get {
                 return this.DateReturnedField;
             }
             set {
-                if ((this.DateReturnedField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.DateReturnedField, value) != true)) {
                     this.DateReturnedField = value;
                     this.RaisePropertyChanged("DateReturned");
                 }

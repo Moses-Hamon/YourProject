@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YourProjectWebApp.ViewModels;
 using YourProjectWebApp.WebServiceYourProject;
 
 namespace YourProjectWebApp.Controllers
@@ -27,23 +28,52 @@ namespace YourProjectWebApp.Controllers
         // GET: ToolLoanInvoice/Create
         public ActionResult Create()
         {
-            return View();
+            var svc = new YourProjectServiceSoapClient();
+            var viewModel = new CreateInvoiceViewModel
+            {
+                Tools = svc.GetAllTools(),
+                Patrons = svc.GetAllPatrons()
+            };
+            return View(viewModel);
         }
 
         // POST: ToolLoanInvoice/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            var svc = new YourProjectServiceSoapClient();
 
+            var invoice = new PatronToolLoanInvoice
+            {
+                Tool = svc.GetSingleTool(int.Parse(collection[1])),
+                Patron = svc.GetSinglePatron(int.Parse(collection[2])),
+                DateRented = collection[3],
+                DateReturned = "",
+                Workspace = collection[4]
+            };
+
+            var result = svc.CreatePatronToolLoanInvoice(invoice);
+            var viewModel = new CreateInvoiceViewModel
+            {
+                PatronToolLoanInvoice = result,
+                Tools = svc.GetAllTools(),
+                Patrons = svc.GetAllPatrons()
+            };
+            
+            if (result == null)
+            {
+                ModelState.AddModelError(string.Empty,"Error Creating Invoice");
+                return View(viewModel);
+            }
+            else
+            {
+                TempData["Success"] = "Invoice was created!!!";
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            
+            
+
+            return View();
         }
 
         // GET: ToolLoanInvoice/Edit/5

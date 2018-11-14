@@ -273,8 +273,8 @@
               <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
               <s:element minOccurs="0" maxOccurs="1" name="Tool" type="tns:Tool" />
               <s:element minOccurs="0" maxOccurs="1" name="Patron" type="tns:Patron" />
-              <s:element minOccurs="1" maxOccurs="1" name="DateRented" type="s:dateTime" />
-              <s:element minOccurs="1" maxOccurs="1" name="DateReturned" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateRented" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateReturned" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="Workspace" type="s:string" />
             </s:sequence>
           </s:extension>
