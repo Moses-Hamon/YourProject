@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using YourProjectWebApp.ViewModels;
 using YourProjectWebApp.WebServiceYourProject;
 
 namespace YourProjectWebApp.Controllers
@@ -42,28 +43,42 @@ namespace YourProjectWebApp.Controllers
         // GET: Tool/Create
         public ActionResult Create()
         {
-            return View();
+            var svc = new YourProjectServiceSoapClient();
+            var viewModel = new ToolBrandViewModel()
+            {
+                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands())
+            };
+            return View(viewModel);
         }
 
         // POST: Tool/Create
         [HttpPost]
         public ActionResult Create(Tool tool)
         {
+            // create connection to server
+            var svc = new YourProjectServiceSoapClient();
+
+            var viewModel = new ToolBrandViewModel()
+            {
+                Tool = tool,
+                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands())
+            }; 
             // check model
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError(string.Empty, "Please enter valid properties");
-                return View(tool);
+                return View(viewModel);
             }
-            // create connection to server
-            var svc = new YourProjectServiceSoapClient();
+            
             // create the tool
             var results = svc.CreateTool(tool);
+            viewModel.Tool = results;
             // check the tool
             if (results.Id == 0)
             {
+                
                 ModelState.AddModelError(string.Empty, "The item was not Created please try again");
-                return View(results);
+                return View(viewModel);
             }
             else
             {
@@ -79,26 +94,41 @@ namespace YourProjectWebApp.Controllers
             var svc = new YourProjectServiceSoapClient();
             // grab the tool
             var tool = svc.GetSingleTool(id);
+            var brands = svc.GetAllBrands();
             //check for null
-            if (tool == null)
+            if (tool == null || brands == null)
             {
-                ModelState.AddModelError(string.Empty, "Patron does not exist");
+                ModelState.AddModelError(string.Empty, "Item does not exist");
                 return RedirectToAction("Index");
             }
-            return View(tool);
+
+            var viewModel = new ToolBrandViewModel()
+            {
+                Tool = tool,
+                Brands = ToolBrandViewModel.ConvertForDropDownList(brands)
+            };
+            return View(viewModel);
         }
 
         // POST: Tool/Edit/5
         [HttpPost]
         public ActionResult Edit(Tool tool)
         {
+            //open connection
+            var svc = new YourProjectServiceSoapClient();
+            var viewModel = new ToolBrandViewModel()
+            {
+                Brands = ToolBrandViewModel.ConvertForDropDownList(svc.GetAllBrands()),
+                Tool = tool
+            };
             // check for validation
             if (!ModelState.IsValid)
             {
-                return View(tool);
+               
+                ModelState.AddModelError(string.Empty, "Incorrect Model");
+                return View(viewModel);
             }
-            //open connection
-            var svc = new YourProjectServiceSoapClient();
+            
             // Updates the item
             var results = svc.UpdateTool(tool);
             // checks the item
