@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using YourProjectWebApp.DAL;
 
 namespace YourProjectWebApp
 {
@@ -17,8 +16,7 @@ namespace YourProjectWebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            // Creates the connection to the API using HttpClient Class
-            ApiConnection.InitializeClient();
+            
         }
     }
 }

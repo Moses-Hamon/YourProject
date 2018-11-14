@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using YourProjectWebApp.Models;
+using YourProjectWebApp.WebServiceYourProject;
 
 namespace YourProjectWebApp.Controllers
 {
@@ -13,7 +13,7 @@ namespace YourProjectWebApp.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+            }
 
         public ActionResult About()
         {

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetAllPatrons">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllPatronsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllPatronsResult" type="tns:ArrayOfPatron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPatron">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Patron" nillable="true" type="tns:Patron" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Patron">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CRUDMethods">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="PatronName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsGroup" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CRUDMethods" />
+      <s:element name="GetSinglePatron">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSinglePatronResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSinglePatronResult" type="tns:Patron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePatron">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="patron" type="tns:Patron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePatronResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePatronResult" type="tns:Patron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePatron">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="patron" type="tns:Patron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePatronResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePatronResult" type="tns:Patron" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePatron">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePatronResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletePatronResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllPatronsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllPatrons" />
+  </wsdl:message>
+  <wsdl:message name="GetAllPatronsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllPatronsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSinglePatronSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSinglePatron" />
+  </wsdl:message>
+  <wsdl:message name="GetSinglePatronSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSinglePatronResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatronSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePatron" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatronSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePatronResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatronSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePatron" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatronSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePatronResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatronSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePatron" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatronSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePatronResponse" />
+  </wsdl:message>
+  <wsdl:portType name="YourProjectServiceSoap">
+    <wsdl:operation name="GetAllPatrons">
+      <wsdl:input message="tns:GetAllPatronsSoapIn" />
+      <wsdl:output message="tns:GetAllPatronsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatron">
+      <wsdl:input message="tns:GetSinglePatronSoapIn" />
+      <wsdl:output message="tns:GetSinglePatronSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatron">
+      <wsdl:input message="tns:UpdatePatronSoapIn" />
+      <wsdl:output message="tns:UpdatePatronSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatron">
+      <wsdl:input message="tns:CreatePatronSoapIn" />
+      <wsdl:output message="tns:CreatePatronSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatron">
+      <wsdl:input message="tns:DeletePatronSoapIn" />
+      <wsdl:output message="tns:DeletePatronSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="YourProjectServiceSoap" type="tns:YourProjectServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllPatrons">
+      <soap:operation soapAction="http://tempuri.org/GetAllPatrons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatron">
+      <soap:operation soapAction="http://tempuri.org/GetSinglePatron" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatron">
+      <soap:operation soapAction="http://tempuri.org/UpdatePatron" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatron">
+      <soap:operation soapAction="http://tempuri.org/CreatePatron" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatron">
+      <soap:operation soapAction="http://tempuri.org/DeletePatron" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="YourProjectServiceSoap12" type="tns:YourProjectServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllPatrons">
+      <soap12:operation soapAction="http://tempuri.org/GetAllPatrons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSinglePatron">
+      <soap12:operation soapAction="http://tempuri.org/GetSinglePatron" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatron">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePatron" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatron">
+      <soap12:operation soapAction="http://tempuri.org/CreatePatron" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatron">
+      <soap12:operation soapAction="http://tempuri.org/DeletePatron" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="YourProjectService">
+    <wsdl:port name="YourProjectServiceSoap" binding="tns:YourProjectServiceSoap">
+      <soap:address location="http://localhost:55550/YourProjectService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="YourProjectServiceSoap12" binding="tns:YourProjectServiceSoap12">
+      <soap12:address location="http://localhost:55550/YourProjectService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

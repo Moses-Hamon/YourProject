@@ -17,7 +17,7 @@ namespace YourProjectWebService.Controllers.Api
         private const string QueryInsertInto =
             "INSERT INTO Patron (patronName, isGroup) VALUES (@patronName, @isGroup);";
         private const string QueryUpdate =
-            "UPDATE Patron SET patronName=@patronName, isGroup=@isGroup WHERE PatronId=@PatronId;";
+            "UPDATE Patron SET patronName=@patronName, isGroup=@isGroup WHERE Id=@Id;";
         private const string QueryDelete = "DELETE FROM Tool WHERE PatronId=@id;";
 
 
