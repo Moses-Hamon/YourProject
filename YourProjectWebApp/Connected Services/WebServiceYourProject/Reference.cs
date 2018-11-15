@@ -381,6 +381,13 @@ namespace YourProjectWebApp.WebServiceYourProject {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllTools", ReplyAction="*")]
         System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllToolsResponse> GetAllToolsAsync(YourProjectWebApp.WebServiceYourProject.GetAllToolsRequest request);
         
+        // CODEGEN: Generating message contract since element name condition from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllToolsWithCondition", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse GetAllToolsWithCondition(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllToolsWithCondition", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse> GetAllToolsWithConditionAsync(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest request);
+        
         // CODEGEN: Generating message contract since element name GetSingleToolResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSingleTool", ReplyAction="*")]
         YourProjectWebApp.WebServiceYourProject.GetSingleToolResponse GetSingleTool(YourProjectWebApp.WebServiceYourProject.GetSingleToolRequest request);
@@ -800,6 +807,74 @@ namespace YourProjectWebApp.WebServiceYourProject {
         
         public GetAllToolsResponseBody(YourProjectWebApp.WebServiceYourProject.Tool[] GetAllToolsResult) {
             this.GetAllToolsResult = GetAllToolsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllToolsWithConditionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllToolsWithCondition", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequestBody Body;
+        
+        public GetAllToolsWithConditionRequest() {
+        }
+        
+        public GetAllToolsWithConditionRequest(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllToolsWithConditionRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string condition;
+        
+        public GetAllToolsWithConditionRequestBody() {
+        }
+        
+        public GetAllToolsWithConditionRequestBody(string condition) {
+            this.condition = condition;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllToolsWithConditionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllToolsWithConditionResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponseBody Body;
+        
+        public GetAllToolsWithConditionResponse() {
+        }
+        
+        public GetAllToolsWithConditionResponse(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllToolsWithConditionResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.Tool[] GetAllToolsWithConditionResult;
+        
+        public GetAllToolsWithConditionResponseBody() {
+        }
+        
+        public GetAllToolsWithConditionResponseBody(YourProjectWebApp.WebServiceYourProject.Tool[] GetAllToolsWithConditionResult) {
+            this.GetAllToolsWithConditionResult = GetAllToolsWithConditionResult;
         }
     }
     
@@ -1691,6 +1766,31 @@ namespace YourProjectWebApp.WebServiceYourProject {
             YourProjectWebApp.WebServiceYourProject.GetAllToolsRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllToolsRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllToolsRequestBody();
             return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllToolsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllToolsWithCondition(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest request) {
+            return base.Channel.GetAllToolsWithCondition(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.Tool[] GetAllToolsWithCondition(string condition) {
+            YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequestBody();
+            inValue.Body.condition = condition;
+            YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllToolsWithCondition(inValue);
+            return retVal.Body.GetAllToolsWithConditionResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllToolsWithConditionAsync(YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest request) {
+            return base.Channel.GetAllToolsWithConditionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse> GetAllToolsWithConditionAsync(string condition) {
+            YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionRequestBody();
+            inValue.Body.condition = condition;
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllToolsWithConditionAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

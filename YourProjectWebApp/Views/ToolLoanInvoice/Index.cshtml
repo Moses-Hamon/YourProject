@@ -12,7 +12,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Invoices</h2>
+<h2>All Invoices</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -103,15 +103,18 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    <button data-invoice-id="@item.Id.ToString()" class="btn-link js-details">Details</button>|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                    <button data-invoice-id="@item.Id.ToString()" class="btn btn-link js-details">Details</button> |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @if (item.DateReturned == null)
+                {
+                    @Html.ActionLink("Return Tool", "UpdateReturn", new {id = item.Id})
+                }
             </tr>
 
         }
 
     </table>
-    <hr/>
+    <hr />
     <div id="loadDetails" class="container-fluid"></div>
 }
 else
@@ -121,9 +124,9 @@ else
 <script>
     $(document).ready(function () {
         $("#invoiceTable .js-details").on("click", function () {
-            const id = $(this).attr("data-invoice-id");
+            const invoiceId = $(this).attr("data-invoice-id");
             $.ajax({
-                url: '/ToolLoanInvoice/_invoiceDetails/'+ id,
+                url: '/ToolLoanInvoice/_invoiceDetails/' + invoiceId,
                 success: function (data) {
                     $("#loadDetails").html(data);
                 }

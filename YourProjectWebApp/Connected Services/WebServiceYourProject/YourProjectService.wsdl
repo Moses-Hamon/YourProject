@@ -114,6 +114,20 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:element name="GetAllToolsWithCondition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="condition" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllToolsWithConditionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllToolsWithConditionResult" type="tns:ArrayOfTool" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetSingleTool">
         <s:complexType>
           <s:sequence>
@@ -374,6 +388,12 @@
   <wsdl:message name="GetAllToolsSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllToolsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllToolsWithConditionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllToolsWithCondition" />
+  </wsdl:message>
+  <wsdl:message name="GetAllToolsWithConditionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllToolsWithConditionResponse" />
+  </wsdl:message>
   <wsdl:message name="GetSingleToolSoapIn">
     <wsdl:part name="parameters" element="tns:GetSingleTool" />
   </wsdl:message>
@@ -483,6 +503,10 @@
       <wsdl:input message="tns:GetAllToolsSoapIn" />
       <wsdl:output message="tns:GetAllToolsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllToolsWithCondition">
+      <wsdl:input message="tns:GetAllToolsWithConditionSoapIn" />
+      <wsdl:output message="tns:GetAllToolsWithConditionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetSingleTool">
       <wsdl:input message="tns:GetSingleToolSoapIn" />
       <wsdl:output message="tns:GetSingleToolSoapOut" />
@@ -589,6 +613,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllTools">
       <soap:operation soapAction="http://tempuri.org/GetAllTools" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllToolsWithCondition">
+      <soap:operation soapAction="http://tempuri.org/GetAllToolsWithCondition" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -772,6 +805,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllTools">
       <soap12:operation soapAction="http://tempuri.org/GetAllTools" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllToolsWithCondition">
+      <soap12:operation soapAction="http://tempuri.org/GetAllToolsWithCondition" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
