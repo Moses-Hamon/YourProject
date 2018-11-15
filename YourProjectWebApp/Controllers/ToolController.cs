@@ -51,6 +51,7 @@ namespace YourProjectWebApp.Controllers
             var svc = new YourProjectServiceSoapClient();
             var viewModel = new CreateToolWithBrandViewModel()
             {
+                Tool = new Tool { Active = true},
                 Brands = svc.GetAllBrands()
             };
             return View(viewModel);
@@ -163,6 +164,21 @@ namespace YourProjectWebApp.Controllers
             }
 
             return View(tool);
+        }
+
+        public ActionResult RetireTool(int id)
+        {
+            var svc = new YourProjectServiceSoapClient();
+            var tool = svc.GetSingleTool(id);
+            tool.Active = false;
+            var updatedTool = svc.UpdateTool(tool);
+            if (tool.Active != updatedTool.Active)
+            {
+                TempData["Success"] = "Tool has been retired";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError(string.Empty,"There was a problem updating the active tool");
+            return RedirectToAction("Index");
         }
 
         // POST: Tool/Delete/5

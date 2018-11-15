@@ -20,25 +20,6 @@ namespace YourProjectWebApp.Controllers
             return View(data);
         }
 
-        // GET: Brand/Details/5
-        public ActionResult Details(int id)
-        {
-            // open soap client
-            var svc = new YourProjectServiceSoapClient();
-            // call method and save data
-            var data = svc.GetSingleBrand(id);
-            // check if there was an entry
-            if (data != null)
-            {
-                return View(data);
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Item Does not Exist");
-                return View("Index");
-            }
-        }
-
         // GET: Brand/Create
         public ActionResult Create()
         {

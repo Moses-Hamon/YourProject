@@ -32,6 +32,7 @@ namespace YourProjectWebApp.Controllers
             var svc = new YourProjectServiceSoapClient();
             var viewModel = new CreateInvoiceViewModel
             {
+                
                 Tools = svc.GetAllToolsWithCondition(" WHERE inUse='0';"),
                 Patrons = svc.GetAllPatrons()
             };
