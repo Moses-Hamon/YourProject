@@ -16,9 +16,14 @@ namespace YourProjectWebApp.Controllers
             //create a new client
             var svc = new YourProjectServiceSoapClient();
             // populate 
-            var tools = svc.GetAllTools();
+            var viewModel = new ToolWithBrandIndexViewModel
+            {
+                Tools = svc.GetAllTools(),
+                Brands = svc.GetAllBrands()
+        };
+
             //return data
-            return View(tools);
+            return View(viewModel);
         }
 
         // GET: Tool/Details/5
@@ -44,7 +49,7 @@ namespace YourProjectWebApp.Controllers
         public ActionResult Create()
         {
             var svc = new YourProjectServiceSoapClient();
-            var viewModel = new ToolBrandFormViewModel()
+            var viewModel = new CreateToolWithBrandViewModel()
             {
                 Brands = svc.GetAllBrands()
             };
@@ -58,7 +63,7 @@ namespace YourProjectWebApp.Controllers
             // create connection to server
             var svc = new YourProjectServiceSoapClient();
 
-            var viewModel = new ToolBrandFormViewModel()
+            var viewModel = new CreateToolWithBrandViewModel()
             {
                 Tool = tool,
                 Brands = svc.GetAllBrands()
@@ -102,7 +107,7 @@ namespace YourProjectWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            var viewModel = new ToolBrandFormViewModel()
+            var viewModel = new CreateToolWithBrandViewModel()
             {
                 Tool = tool,
                 Brands = brands
@@ -116,7 +121,7 @@ namespace YourProjectWebApp.Controllers
         {
             //open connection
             var svc = new YourProjectServiceSoapClient();
-            var viewModel = new ToolBrandFormViewModel()
+            var viewModel = new CreateToolWithBrandViewModel()
             {
                 Brands = svc.GetAllBrands(),
                 Tool = tool

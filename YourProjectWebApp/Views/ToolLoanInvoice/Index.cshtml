@@ -3,6 +3,8 @@
 
 @{
     var invoice = Model.PatronToolLoanInvoices.ElementAt(0);
+    var patronName = Model.Patrons.ElementAtOrDefault(0)?.PatronName;
+    var toolName = Model.Patrons.ElementAtOrDefault(0)?.PatronName;
 }
 @{
     ViewBag.Title = "Index";
@@ -15,16 +17,16 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => invoice.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => invoice.PatronId)
+            @Html.DisplayName("Patron")
         </th>
         <th>
-            @Html.DisplayNameFor(model => invoice.ToolId)
+            @Html.DisplayName("Tool")
         </th>
         <th>
             @Html.DisplayNameFor(model => invoice.DateRented)
@@ -45,25 +47,44 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-
-                @Html.DisplayFor(modelItem => item.ToolId)
+                @foreach (var patron in Model.Patrons)
+                {
+                    if (patron.Id == item.PatronId)
+                    {
+                        @Html.DisplayFor(p => patron.PatronName)
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PatronId)
+                @foreach (var tool in Model.Tools)
+                {
+                    if (tool.Id == item.ToolId)
+                    {
+                        @Html.DisplayFor(toolItem => tool.Description)
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateRented)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateReturned)
+                @if (item.DateReturned==null)
+                {
+                    <text>N/A</text>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.DateReturned)
+                }
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Workspace)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

@@ -8,7 +8,7 @@ using YourProjectWebApp.WebServiceYourProject;
 
 namespace YourProjectWebApp.ViewModels
 {
-    public class ToolBrandFormViewModel
+    public class CreateToolWithBrandViewModel
     {
         public Tool Tool { get; set; }
         public IEnumerable<Brand> Brands { get; set; }

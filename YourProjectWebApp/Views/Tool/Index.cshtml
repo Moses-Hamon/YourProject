@@ -1,8 +1,13 @@
-﻿@model IEnumerable<YourProjectWebApp.WebServiceYourProject.Tool>
+﻿@using YourProjectWebApp.WebServiceYourProject
+@model YourProjectWebApp.ViewModels.ToolWithBrandIndexViewModel
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+
+                var toolHeadings = Model.Tools.ElementAt(0);
 }
 
 <h2>Index</h2>
@@ -10,49 +15,65 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (toolHeadings != null)
+{
 <table class="table">
+
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BrandId)
+            @Html.DisplayNameFor(model => toolHeadings.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => toolHeadings.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Active)
+            @Html.DisplayNameFor(model => toolHeadings.Active)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Comments)
+            @Html.DisplayNameFor(model => toolHeadings.Comments)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InUse)
+            @Html.DisplayNameFor(model => toolHeadings.InUse)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrandId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InUse)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    @foreach (var item in Model.Tools)
+    {
+        <tr>
+            <td>
+                @foreach (var brand in Model.Brands)
+                {
+                    if (brand.Id.Equals(item.BrandId))
+                    {
+                        @Html.DisplayFor(b => brand.BrandName)
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InUse)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+}
+else
+{
+<p class="alert-warning">There are currently no tools in the database please create some</p>
 }
 
-</table>
+
