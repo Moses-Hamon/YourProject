@@ -1,0 +1,66 @@
+﻿@model YourProjectWebApp.ViewModels.InvoiceDetailsViewModel
+
+<h4>Invoice Details for @Model.ToolLoanInvoice.Id</h4>
+<hr/>
+
+<div class="container-fluid">
+    <div class="col">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ToolLoanInvoice.ToolId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ToolLoanInvoice.ToolId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ToolLoanInvoice.PatronId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ToolLoanInvoice.PatronId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ToolLoanInvoice.DateRented)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ToolLoanInvoice.DateRented)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ToolLoanInvoice.DateReturned)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ToolLoanInvoice.DateReturned)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ToolLoanInvoice.Workspace)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ToolLoanInvoice.Workspace)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="col">
+
+    </div>
+
+    <div class="col">
+
+    </div>
+    
+    <hr />
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ToolLoanInvoice.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

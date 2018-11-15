@@ -120,5 +120,23 @@ namespace YourProjectWebApp.Controllers
                 return View();
             }
         }
+
+        public ActionResult _invoiceDetails(int id)
+        {
+            var svc = new YourProjectServiceSoapClient();
+            var invoice = svc.GetSinglePatronToolLoanInvoice(id);
+
+            var viewModel = new InvoiceDetailsViewModel
+            {
+                ToolLoanInvoice = invoice,
+                Patron = svc.GetSinglePatron(invoice.PatronId),
+                Tool = svc.GetSingleTool(invoice.ToolId)
+            };
+
+            return PartialView(viewModel);
+        }
+
+
+
     }
 }

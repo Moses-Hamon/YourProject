@@ -1,13 +1,11 @@
-﻿@using YourProjectWebApp.WebServiceYourProject
+﻿
 @model YourProjectWebApp.ViewModels.ToolWithBrandIndexViewModel
 
 @{
-                /**/
-
                 ViewBag.Title = "Index";
                 Layout = "~/Views/Shared/_Layout.cshtml";
 
-                var toolHeadings = Model.Tools.ElementAt(0);
+                var toolHeadings = Model.Tools.ElementAtOrDefault(0);
 }
 
 <h2>Index</h2>

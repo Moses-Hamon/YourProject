@@ -2,91 +2,134 @@
 @model YourProjectWebApp.ViewModels.InvoiceIndexViewModel
 
 @{
-    var invoice = Model.PatronToolLoanInvoices.ElementAt(0);
+    var invoiceHeadings = Model.PatronToolLoanInvoices.ElementAtOrDefault(0);
     var patronName = Model.Patrons.ElementAtOrDefault(0)?.PatronName;
     var toolName = Model.Patrons.ElementAtOrDefault(0)?.PatronName;
 }
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Invoices</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => invoice.Id)
-        </th>
-        <th>
-            @Html.DisplayName("Patron")
-        </th>
-        <th>
-            @Html.DisplayName("Tool")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => invoice.DateRented)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => invoice.DateReturned)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => invoice.Workspace)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.PatronToolLoanInvoices)
-    {
+@if (invoiceHeadings != null)
+{
+    <table id="invoiceTable" class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @foreach (var patron in Model.Patrons)
-                {
-                    if (patron.Id == item.PatronId)
-                    {
-                        @Html.DisplayFor(p => patron.PatronName)
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var tool in Model.Tools)
-                {
-                    if (tool.Id == item.ToolId)
-                    {
-                        @Html.DisplayFor(toolItem => tool.Description)
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateRented)
-            </td>
-            <td>
-                @if (item.DateReturned==null)
-                {
-                    <text>N/A</text>
-                }
-                else
-                {
-                    @Html.DisplayFor(modelItem => item.DateReturned)
-                }
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Workspace)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => invoiceHeadings.Id)
+            </th>
+            <th>
+                @Html.DisplayName("Patron")
+            </th>
+            <th>
+                @Html.DisplayName("Tool")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => invoiceHeadings.DateRented)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => invoiceHeadings.DateReturned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => invoiceHeadings.Workspace)
+            </th>
+            <th></th>
         </tr>
-    }
+        @foreach (var item in Model.PatronToolLoanInvoices)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @{
+                        var n = 0;
+                        foreach (var patron in Model.Patrons)
+                        {
+                            if (patron.Id == item.PatronId)
+                            {
+                                @Html.DisplayFor(p => patron.PatronName)
+                                n++;
+                            }
+                        }
+                        if (n == 0)
+                        {
+                            <t class="alert-danger">Patron Missing from database</t>
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        var t = 0;
+                        <!-- Go Through the list of brands and match the name to the id -->
+                        foreach (var tool in Model.Tools)
+                        {
+                            <!-- If the a tool matches the invoice, place the tool name in -->
+                            if (tool.Id == item.ToolId)
+                            {
+                                @Html.DisplayFor(toolItem => tool.Description)
+                                t++;
+                            }
+                        }
+                        <!-- If none of the Tools matched then the tool is missing from the database -->
+                        if (t == 0)
+                        {
+                            <t class="alert-danger">Tool Missing from database</t>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRented)
+                </td>
+                <td>
+                    @if (item.DateReturned == null)
+                    {
+                        <text>N/A</text>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.DateReturned)
+                    }
 
-</table>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workspace)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    <button data-invoice-id="@item.Id.ToString()" class="btn-link js-details">Details</button>|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    <hr/>
+    <div id="loadDetails" class="container-fluid"></div>
+}
+else
+{
+    <p class="alert-warning">There are no entries in the database please create some</p>
+}
+<script>
+    $(document).ready(function () {
+        $("#invoiceTable .js-details").on("click", function () {
+            const id = $(this).attr("data-invoice-id");
+            $.ajax({
+                url: '/ToolLoanInvoice/_invoiceDetails/'+ id,
+                success: function (data) {
+                    $("#loadDetails").html(data);
+                }
+            });
+        });
+    });
+
+</script>
+
