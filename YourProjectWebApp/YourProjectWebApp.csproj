@@ -441,70 +441,19 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Connected Services\WebServiceYourProject\YourProjectService.wsdl" />
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Patron.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Tool.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Brand.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Brand.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Patron.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreateBrandResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreatePatronResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreatePatronToolLoanInvoiceResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.CreateToolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllBrandsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllPatronsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllToolsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllToolsWithConditionResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSingleBrandResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSinglePatronResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetSingleToolResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdateBrandResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdatePatronResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdatePatronToolLoanInvoiceResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.UpdateToolResponse.datasource">
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.Tool.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
