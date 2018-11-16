@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatronController.cs" />
     <Compile Include="Controllers\ToolController.cs" />
     <Compile Include="Controllers\ToolLoanInvoiceController.cs" />
@@ -525,7 +526,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -569,6 +572,8 @@
     <Content Include="Views\ToolLoanInvoice\_Test.cshtml" />
     <Content Include="Views\ToolLoanInvoice\_invoiceDetails.cshtml" />
     <Content Include="Views\ToolLoanInvoice\Edit.cshtml" />
+    <Content Include="Views\Brand\Web.config" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

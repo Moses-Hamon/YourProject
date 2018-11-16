@@ -124,7 +124,7 @@ else
 <script>
     $(document).ready(function () {
         $("#invoiceTable .js-details").on("click", function () {
-            const invoiceId = $(this).attr("data-invoice-id");
+            var invoiceId = $(this).attr("data-invoice-id");
             $.ajax({
                 url: '/ToolLoanInvoice/_invoiceDetails/' + invoiceId,
                 success: function (data) {
