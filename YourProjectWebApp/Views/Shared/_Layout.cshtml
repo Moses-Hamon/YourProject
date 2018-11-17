@@ -27,8 +27,13 @@
         <li class="nav-item mx-4">
             @Html.ActionLink("Loans", "Index", "ToolLoanInvoice", new { area = "" }, null)
         </li>
-        <li class="nav-item mx-4">
+        <li class="nav-item">
             @Html.ActionLink("Brand", "Index", "Brand", new { area = "" }, null)
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-4">
+            @Html.ActionLink("Logout", "Logout", "Login")
         </li>
     </ul>
 </nav>

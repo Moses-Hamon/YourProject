@@ -183,13 +183,13 @@ namespace YourProjectWebApp.WebServiceYourProject {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/DeletePatronToolLoanInvoice", ReplyAction="*")]
         System.Threading.Tasks.Task<bool> DeletePatronToolLoanInvoiceAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validCredentials", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidCredentials", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CRUDMethods))]
-        bool validCredentials(YourProjectWebApp.WebServiceYourProject.Staff staff);
+        bool ValidCredentials(YourProjectWebApp.WebServiceYourProject.Staff staff);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/validCredentials", ReplyAction="*")]
-        System.Threading.Tasks.Task<bool> validCredentialsAsync(YourProjectWebApp.WebServiceYourProject.Staff staff);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ValidCredentials", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> ValidCredentialsAsync(YourProjectWebApp.WebServiceYourProject.Staff staff);
     }
     
     /// <remarks/>
@@ -740,12 +740,12 @@ namespace YourProjectWebApp.WebServiceYourProject {
             return base.Channel.DeletePatronToolLoanInvoiceAsync(id);
         }
         
-        public bool validCredentials(YourProjectWebApp.WebServiceYourProject.Staff staff) {
-            return base.Channel.validCredentials(staff);
+        public bool ValidCredentials(YourProjectWebApp.WebServiceYourProject.Staff staff) {
+            return base.Channel.ValidCredentials(staff);
         }
         
-        public System.Threading.Tasks.Task<bool> validCredentialsAsync(YourProjectWebApp.WebServiceYourProject.Staff staff) {
-            return base.Channel.validCredentialsAsync(staff);
+        public System.Threading.Tasks.Task<bool> ValidCredentialsAsync(YourProjectWebApp.WebServiceYourProject.Staff staff) {
+            return base.Channel.ValidCredentialsAsync(staff);
         }
     }
 }

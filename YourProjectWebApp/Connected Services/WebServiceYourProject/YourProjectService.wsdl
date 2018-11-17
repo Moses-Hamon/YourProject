@@ -350,7 +350,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="validCredentials">
+      <s:element name="ValidCredentials">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="staff" type="tns:Staff" />
@@ -368,10 +368,10 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
-      <s:element name="validCredentialsResponse">
+      <s:element name="ValidCredentialsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="validCredentialsResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ValidCredentialsResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -503,11 +503,11 @@
   <wsdl:message name="DeletePatronToolLoanInvoiceSoapOut">
     <wsdl:part name="parameters" element="tns:DeletePatronToolLoanInvoiceResponse" />
   </wsdl:message>
-  <wsdl:message name="validCredentialsSoapIn">
-    <wsdl:part name="parameters" element="tns:validCredentials" />
+  <wsdl:message name="ValidCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidCredentials" />
   </wsdl:message>
-  <wsdl:message name="validCredentialsSoapOut">
-    <wsdl:part name="parameters" element="tns:validCredentialsResponse" />
+  <wsdl:message name="ValidCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidCredentialsResponse" />
   </wsdl:message>
   <wsdl:portType name="YourProjectServiceSoap">
     <wsdl:operation name="GetAllPatrons">
@@ -594,9 +594,9 @@
       <wsdl:input message="tns:DeletePatronToolLoanInvoiceSoapIn" />
       <wsdl:output message="tns:DeletePatronToolLoanInvoiceSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="validCredentials">
-      <wsdl:input message="tns:validCredentialsSoapIn" />
-      <wsdl:output message="tns:validCredentialsSoapOut" />
+    <wsdl:operation name="ValidCredentials">
+      <wsdl:input message="tns:ValidCredentialsSoapIn" />
+      <wsdl:output message="tns:ValidCredentialsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="YourProjectServiceSoap" type="tns:YourProjectServiceSoap">
@@ -790,8 +790,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="validCredentials">
-      <soap:operation soapAction="http://tempuri.org/validCredentials" style="document" />
+    <wsdl:operation name="ValidCredentials">
+      <soap:operation soapAction="http://tempuri.org/ValidCredentials" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -991,8 +991,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="validCredentials">
-      <soap12:operation soapAction="http://tempuri.org/validCredentials" style="document" />
+    <wsdl:operation name="ValidCredentials">
+      <soap12:operation soapAction="http://tempuri.org/ValidCredentials" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
