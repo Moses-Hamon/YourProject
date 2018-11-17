@@ -33,7 +33,7 @@ namespace YourProjectWebApp.Controllers
             var viewModel = new CreateInvoiceViewModel
             {
                 
-                Tools = svc.GetAllToolsWithCondition(" WHERE inUse='0';"),
+                Tools = svc.GetAllToolsWithCondition(" WHERE inUse='0' AND active='1';"),
                 Patrons = svc.GetAllPatrons()
             };
             return View(viewModel);
