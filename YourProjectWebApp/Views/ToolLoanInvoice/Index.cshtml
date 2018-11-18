@@ -99,15 +99,24 @@
 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Workspace)
+                    @if (item.Workspace == null)
+                    {
+                        <text>N/A</text>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Workspace)
+                    }
+                    
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    <button data-invoice-id="@item.Id.ToString()" class="btn btn-link js-details">Details</button> |
+                <button data-invoice-id="@item.Id.ToString()" class="btn btn-link js-details">Details</button> |
+                
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
                 @if (item.DateReturned == null)
                 {
-                    @Html.ActionLink("Return Tool", "UpdateReturn", new {id = item.Id})
+                    @Html.ActionLink("Return Tool", "UpdateReturn", new {id = item.Id}, new { onclick = "return confirm('Are you sure you want to Return Tool?');"} )
                 }
             </tr>
 

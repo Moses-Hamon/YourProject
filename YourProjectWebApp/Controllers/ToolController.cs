@@ -66,7 +66,7 @@ namespace YourProjectWebApp.Controllers
 
             var viewModel = new CreateToolWithBrandViewModel()
             {
-                Tool = tool,
+                
                 Brands = svc.GetAllBrands()
             }; 
             // check model
@@ -75,7 +75,9 @@ namespace YourProjectWebApp.Controllers
                 ModelState.AddModelError(string.Empty, "Please enter valid properties");
                 return View(viewModel);
             }
-            
+            // add the brand name onto the tool
+            var brandForTool = svc.GetSingleBrand(tool.BrandId);
+            tool.Description = string.Join(" ", brandForTool.BrandName, tool.Description);
             // create the tool
             var results = svc.CreateTool(tool);
             viewModel.Tool = results;

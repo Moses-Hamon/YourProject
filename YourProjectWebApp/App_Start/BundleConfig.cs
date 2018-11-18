@@ -11,8 +11,8 @@ namespace YourProjectWebApp
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                 "~/Scripts/bootstrap.js",
-                "~/scripts/datatables/jquery.datatables.js",
-                "~/scripts/datatables/datatables.bootstrap.js"
+                "~/scripts/datatables/datatables.bootstrap.js",
+                "~/Scripts/jquery.unobtrusive*"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

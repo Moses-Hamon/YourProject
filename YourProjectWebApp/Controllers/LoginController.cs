@@ -23,13 +23,15 @@ namespace YourProjectWebApp.Controllers
             var results = svc.ValidCredentials(staff);
             if (results)
             {
+                
                 FormsAuthentication.RedirectFromLoginPage(staff.UserName, true);
                 Session.Add("User", staff.UserName);
                 return View();
+                
             }
             else
             {
-                ModelState.AddModelError(string.Empty, $"Credentials received: {staff.UserName} + {staff.UserPassword}");
+                ModelState.AddModelError(string.Empty, "Incorrect Username or Password, Please try again!");
                 return View(staff);
             }
             

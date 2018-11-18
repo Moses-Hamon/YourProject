@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reports</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h5>Please Select A report to view</h5>
+        </div>
+        <div class="col">
+            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new {queryType = "" }, new AjaxOptions{ UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace })
+
+        </div>
+
+    </div>
+    
+
+</div>
+<div id="ReportInfo">
+
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $(".form-check-input").on(change, checked, value, function() {
+
+            });
+        });
+    </script>
+
+}
+
+
