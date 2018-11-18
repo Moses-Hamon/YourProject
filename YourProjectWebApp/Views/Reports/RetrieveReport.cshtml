@@ -21,12 +21,12 @@
             <th></th>
         </tr>
 
+
         @foreach (var item in Model.Tools)
         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
-                    
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BrandId)
@@ -43,7 +43,6 @@
                 </td>
             </tr>
         }
-
     </table>
-    @Html.ActionLink("Download Report", "DownloadCSV", Model, new { onclick = "return confirm('Do you wish to download the CSV report?');"} )
+    @Html.ActionLink("Download REPORT", "DownloadCSV", "Reports", new { queryType = TempData["query"], brand = TempData["brand"] } )
 </div>
