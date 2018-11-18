@@ -1,37 +1,59 @@
-﻿
+﻿@model IEnumerable<YourProjectWebApp.WebServiceYourProject.Brand>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string query = "";
+    int? selectedBrand = null;
 }
 
 <h2>Reports</h2>
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h5>Please Select A report to view</h5>
+            <h5>Please Select a report to view</h5>
         </div>
         <div class="col">
-           @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new {queryType = "" }, new AjaxOptions{ UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace })
+            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new { queryType = "" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new { queryType = "AllChecked" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new { queryType = "AllActive" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new { queryType = "AllRetired" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) | <hr />
 
+        </div>
+        <div class="col">
+            <text>Select Brand: </text>@Html.DropDownListFor(b => selectedBrand, new SelectList(Model, "Id", "BrandName"), "", new { @id = "brand-selector"})
+            <br/>
+            Filter By: 
+            <br/>
+            <button id="filterActive" data-query-active="AllActive" class="btn btn-link">Active Tools</button> | 
+            <button id="filterRetired" data-query-retired="AllRetired" class="btn btn-link js-retired">Retired Tools</button>
         </div>
 
     </div>
-    
 
 </div>
 <div id="ReportInfo">
 
 </div>
 
-@section scripts{
-    <script>
-        $(document).ready(function() {
-            $(".form-check-input").on(change, checked, value, function() {
+<script>
+    $(document).ready(function () {
+        $("#filterActive").on("click", function () {
+            const queryType = "AllActive";
+            const brand = $("#brand-selector option:selected").val();
+            javascript: console.log("queryType: " + queryType + "brand id: " + brand.toString());
 
+            $.ajax({
+                type: "POST",
+                url: '/Reports/retrieveReport/queryType=' + queryType+'&brand='+brand,
+                success: function (data) {
+                    $("#ReportInfo").html(data);
+                }
             });
         });
-    </script>
+    });
 
-}
+</script>
+
 
 

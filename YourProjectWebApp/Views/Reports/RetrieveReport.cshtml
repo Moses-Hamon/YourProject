@@ -1,48 +1,57 @@
-﻿@model YourProjectWebApp.ViewModels.ToolWithBrandIndexViewModel
-
-<div id="ReportInfo">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
-            </th>
-            <th></th>
-        </tr>
+﻿@using Microsoft.Ajax.Utilities
+@model YourProjectWebApp.ViewModels.ToolWithBrandIndexViewModel
 
 
-        @foreach (var item in Model.Tools)
-        {
+@if (Model.Tools.Any())
+{
+    <div id="ReportInfo">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrandId)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Active)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InUse)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
+                </th>
+                <th></th>
             </tr>
-        }
-    </table>
-    @Html.ActionLink("Download REPORT", "DownloadCSV", "Reports", new { queryType = TempData["query"], brand = TempData["brand"] } )
-</div>
+
+
+            @foreach (var item in Model.Tools)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InUse)
+                    </td>
+                </tr>
+            }
+        </table>
+        @Ajax.ActionLink("Download REPORT", "DownloadCSV", "Reports", new { queryType = ViewBag.query, brand = ViewBag.brand }, new AjaxOptions())
+    </div>
+}
+else
+{
+    <p class="alert-warning">There are no entries for that search!!</p>
+}

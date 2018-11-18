@@ -11,13 +11,16 @@ namespace YourProjectWebApp.Controllers
 {
     public class ReportsController : Controller
     {
-        // GET: ALL Tools
+        
         public ActionResult Index()
         {
-            return View();
+            var svc = new YourProjectServiceSoapClient();
+            var brands = svc.GetAllBrands();
+            
+            return View(brands);
         }
 
-
+        
         public ActionResult RetrieveReport(string queryType, int? brand)
         {
 
@@ -34,25 +37,34 @@ namespace YourProjectWebApp.Controllers
                 : SelectQuery(queryType, brand));
 
             // Store the queryName
-            TempData.Add("query", queryType);
-            TempData.Add("brand", brand);
+            ViewBag.query = queryType;
+            ViewBag.brand = brand;
+            //TempData["query"] = queryType;
+            //TempData["brand"]= brand;
             // return partial view with new info
             return PartialView(viewModel);
         }
 
         public FileResult DownloadCSV(string queryType, int? brand)
         {
+            // string builder for creating csv file
             var builder = new StringBuilder();
+            // add in the headings
+            builder.AppendLine(string.Join(",",
+                new object[] {"Id", "Description", "Brand", "Comments", "Active", "InUse"}));
+            // creates connection
             var svc = new YourProjectServiceSoapClient();
+            // collects info
             var model = svc.GetAllToolsWithCondition(brand == null
                 ? SelectQuery(queryType, null)
                 : SelectQuery(queryType, brand));
-
+            // for each tool in the list
             foreach (var tool in model)
             {
+                // add a new line of data in csv format
                 builder.AppendLine(ConvertToolToCsvString(tool));
             }
-            
+            // returns file for download.
             return File(new UTF8Encoding().GetBytes(builder.ToString()), "text/csv", $"{queryType}_{DateTime.Now.ToShortDateString()}_Report.csv");
         }
 
