@@ -45,7 +45,19 @@ namespace YourProjectWebApp.Controllers
             return PartialView(viewModel);
         }
 
-        public FileResult DownloadCSV(string queryType, int? brand)
+        public FileContentResult Download(string queryType, int? brand)
+        {
+            var document = ConvertToCSV(queryType, brand);
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = $"{DateTime.Now.ToShortDateString()}_Report.csv",
+                Inline = false
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return File(new UTF8Encoding().GetBytes(document), "text/csv");
+        }
+
+        public string ConvertToCSV(string queryType, int? brand)
         {
             // string builder for creating csv file
             var builder = new StringBuilder();
@@ -64,8 +76,11 @@ namespace YourProjectWebApp.Controllers
                 // add a new line of data in csv format
                 builder.AppendLine(ConvertToolToCsvString(tool));
             }
+            
             // returns file for download.
-            return File(new UTF8Encoding().GetBytes(builder.ToString()), "text/csv", $"{queryType}_{DateTime.Now.ToShortDateString()}_Report.csv");
+            //return File(new UTF8Encoding().GetBytes(builder.ToString()), "text/csv", $"{queryType}_{DateTime.Now.ToShortDateString()}_Report.csv");
+            return builder.ToString();
+
         }
 
         public string ConvertToolToCsvString(Tool tool)

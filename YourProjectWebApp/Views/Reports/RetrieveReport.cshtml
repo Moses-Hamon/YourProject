@@ -1,57 +1,78 @@
-﻿@using Microsoft.Ajax.Utilities
+﻿@using System.Net.Http
+@using Microsoft.Ajax.Utilities
 @model YourProjectWebApp.ViewModels.ToolWithBrandIndexViewModel
 
 
 @if (Model.Tools.Any())
 {
-    <div id="ReportInfo">
-        <table class="table">
+<div id="ReportInfo">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
+            </th>
+            <th></th>
+        </tr>
+
+
+
+        @foreach (var item in Model.Tools)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InUse)
+                </td>
             </tr>
 
+        }
+    </table>
+    <input id="query" type="hidden" value="@ViewBag.query" />
+    <input id="brand" type="hidden" value="@ViewBag.brand" />
+    @Ajax.ActionLink("Download AjaxActionLink", "Download", new { queryType = ViewBag.query, brand = ViewBag.brand }, new AjaxOptions { HttpMethod = "GET", Confirm = "[RightClick] and [Save Link As] to save file." })
+    <button id="downloadCSV" class="btn btn-link">Download JQuery</button>
+    <a class="btn btn-link" data-ajax="true" data-ajax-method="GET" href="/Reports/Download?queryType=@ViewBag.query&amp;brand=@ViewBag.brand">TEST</a>
 
-            @foreach (var item in Model.Tools)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BrandId)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Comments)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InUse)
-                    </td>
-                </tr>
-            }
-        </table>
-        @Ajax.ActionLink("Download REPORT", "DownloadCSV", "Reports", new { queryType = ViewBag.query, brand = ViewBag.brand }, new AjaxOptions())
-    </div>
+</div>
 }
 else
 {
     <p class="alert-warning">There are no entries for that search!!</p>
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#downloadCSV").on("click", function () {
+            const query = $("#query").val();
+            const tBrand = $("#brand").val();
+            $.ajax({
+                type: "POST",
+                url: `/Reports/Download/?queryType=${query}&brand=${brand.toString()}`
+            });
+        });
+    });
+</script>
