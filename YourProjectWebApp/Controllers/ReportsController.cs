@@ -28,19 +28,16 @@ namespace YourProjectWebApp.Controllers
             var svc = new YourProjectServiceSoapClient();
             var viewModel = new ToolWithBrandIndexViewModel
             {
-                Brands = svc.GetAllBrands()
+                // Brands are used for displaying brand name;
+                Brands = svc.GetAllBrands(),
+                // store list based on query and brand
+                Tools = svc.GetAllToolsWithCondition(brand == null
+                    ? SelectQuery(queryType, null)
+                    : SelectQuery(queryType, brand))
             };
-
-            // store list based on query and brand
-            viewModel.Tools = svc.GetAllToolsWithCondition(brand == null 
-                ? SelectQuery(queryType, null)
-                : SelectQuery(queryType, brand));
-
             // Store the queryName
             ViewBag.query = queryType;
             ViewBag.brand = brand;
-            //TempData["query"] = queryType;
-            //TempData["brand"]= brand;
             // return partial view with new info
             return PartialView(viewModel);
         }
