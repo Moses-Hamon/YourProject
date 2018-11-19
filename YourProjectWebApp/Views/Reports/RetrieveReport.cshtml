@@ -53,9 +53,8 @@
     </table>
     <input id="query" type="hidden" value="@ViewBag.query" />
     <input id="brand" type="hidden" value="@ViewBag.brand" />
-    @Ajax.ActionLink("Download AjaxActionLink", "Download", new { queryType = ViewBag.query, brand = ViewBag.brand }, new AjaxOptions { HttpMethod = "GET", Confirm = "[RightClick] and [Save Link As] to save file." })
-    <button id="downloadCSV" class="btn btn-link">Download JQuery</button>
-    <a class="btn btn-link" data-ajax="true" data-ajax-method="GET" href="/Reports/Download?queryType=@ViewBag.query&amp;brand=@ViewBag.brand">TEST</a>
+    <button id="downloadCSV" class="btn btn-link">Download Report</button>
+    
 
 </div>
 }
@@ -69,14 +68,16 @@ else
         $("#downloadCSV").on("click", function () {
             const query = $("#query").val();
             const tBrand = $("#brand").val();
+            // Ajax request for post method to the controller
             $.ajax({
                 type: "POST",
-                url: `/Reports/Download/?queryType=${query}&brand=${brand.toString()}`,
+                url: `/Reports/Download/?queryType=${query}&brand=${tBrand.toString()}`,
+                // Creates a download link for receiving csv file
                 success: function (data) {
                     var hiddenElement = document.createElement('a');
                     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
                     hiddenElement.target = '_blank';
-                    hiddenElement.download = 'Reports.csv';
+                    hiddenElement.download = 'report.csv';
                     hiddenElement.click();
                 }
             });
