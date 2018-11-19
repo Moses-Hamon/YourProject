@@ -11,7 +11,10 @@ namespace YourProjectWebApp.Controllers
 {
     public class ReportsController : Controller
     {
-        
+        /// <summary>
+        /// Sets up main page for reports
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var svc = new YourProjectServiceSoapClient();
@@ -19,8 +22,13 @@ namespace YourProjectWebApp.Controllers
             
             return View(brands);
         }
-
-        
+       /// <summary>
+       /// Retrieves a report based on the query and a brand
+       /// Places view into an existing div
+       /// </summary>
+       /// <param name="queryType">The query title for the report</param>
+       /// <param name="brand">id of the brand</param>
+       /// <returns></returns>
         public ActionResult RetrieveReport(string queryType, int? brand)
         {
 
@@ -41,7 +49,13 @@ namespace YourProjectWebApp.Controllers
             // return partial view with new info
             return PartialView(viewModel);
         }
-
+        /// <summary>
+        /// Returns the converted file for downloading.
+        /// 
+        /// </summary>
+        /// <param name="queryType">Query title</param>
+        /// <param name="brand">brand id for filtering</param>
+        /// <returns></returns>
         public FileContentResult Download(string queryType, int? brand)
         {
             var document = ConvertToCSV(queryType, brand);
@@ -53,7 +67,13 @@ namespace YourProjectWebApp.Controllers
             Response.AppendHeader("Content-Disposition", cd.ToString());
             return File(new UTF8Encoding().GetBytes(document), "text/csv");
         }
-
+        /// <summary>
+        /// Retrieves the data using webservice
+        /// Converts the data into CSV format
+        /// </summary>
+        /// <param name="queryType">Query title</param>
+        /// <param name="brand">Brand Id for filtering</param>
+        /// <returns></returns>
         public string ConvertToCSV(string queryType, int? brand)
         {
             // string builder for creating csv file
@@ -79,7 +99,11 @@ namespace YourProjectWebApp.Controllers
             return builder.ToString();
 
         }
-
+        /// <summary>
+        /// Converts a single tool to csv format
+        /// </summary>
+        /// <param name="tool">Tool that is converted to csv string</param>
+        /// <returns></returns>
         public string ConvertToolToCsvString(Tool tool)
         {
             var svc = new YourProjectServiceSoapClient();
@@ -87,7 +111,12 @@ namespace YourProjectWebApp.Controllers
             // using the tools properties and inbuilt function that .net provides Creates a string out of our model
             return string.Join(",", new object[] { tool.Id, tool.Description, brand.BrandName, tool.Comments, tool.Active, tool.InUse });
         }
-
+        /// <summary>
+        /// Selector used for selecting queryType and brand Id
+        /// </summary>
+        /// <param name="queryType">QueryType</param>
+        /// <param name="brandId">Brand id </param>
+        /// <returns>Completed Query</returns>
         public string SelectQuery(string queryType, int? brandId)
         {
             var queryString = "";

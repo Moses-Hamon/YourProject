@@ -10,7 +10,10 @@ namespace YourProjectWebApp.Controllers
 {
     public class PatronController : Controller
     {
-        
+        /// <summary>
+        /// Sets up index view for patron
+        /// </summary>
+        /// <returns></returns>
         // GET: Patron
         public ActionResult Index()
         {
@@ -21,7 +24,11 @@ namespace YourProjectWebApp.Controllers
             //return data
             return View(data);
         }
-
+        /// <summary>
+        ///  Sets up View for details of a single Patron
+        /// </summary>
+        /// <param name="id">Id of the Patron</param>
+        /// <returns></returns>
         // GET: Patron/Details/5
         public ActionResult Details(int id)
         {
@@ -40,14 +47,22 @@ namespace YourProjectWebApp.Controllers
                 return View("Index");
             }
         }
-
+        /// <summary>
+        /// Sets u view for creating a new Patron
+        /// </summary>
+        /// <returns></returns>
         // GET: Patron/Create
         public ActionResult Create()
         {
             
             return View();
         }
-
+        /// <summary>
+        /// Creates a new patron using model data from form collection
+        /// creates new patron in database using web services
+        /// </summary>
+        /// <param name="patron">Model with form data</param>
+        /// <returns></returns>
         // POST: Patron/Create
         [HttpPost]
         public ActionResult Create(Patron patron)
@@ -73,7 +88,11 @@ namespace YourProjectWebApp.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        /// <summary>
+        /// sets up screen for editing a single patron
+        /// </summary>
+        /// <param name="id">Id of patron</param>
+        /// <returns></returns>
         // GET: Patron/Edit/5
         public ActionResult Edit(int id)
         {
@@ -89,7 +108,11 @@ namespace YourProjectWebApp.Controllers
             }
             return View(patron);
         }
-
+        /// <summary>
+        /// Updates a patron using the Model data collected from form
+        /// </summary>
+        /// <param name="patron">Model with form data</param>
+        /// <returns></returns>
         // POST: Patron/Edit/5
         [HttpPost]
         public ActionResult Edit(Patron patron)
@@ -115,7 +138,11 @@ namespace YourProjectWebApp.Controllers
 
 
         }
-
+        /// <summary>
+        /// sets up a delete screen for a single patron
+        /// </summary>
+        /// <param name="id">Id of Patron</param>
+        /// <returns></returns>
         // GET: Patron/Delete/5
         public ActionResult Delete(int id)
         {
@@ -132,7 +159,11 @@ namespace YourProjectWebApp.Controllers
 
             return View(patron);
         }
-
+        /// <summary>
+        /// Deletes a patron entry from the database using web service
+        /// </summary>
+        /// <param name="patron">Patron model</param>
+        /// <returns></returns>
         // POST: Patron/Delete/5
         [HttpPost]
         public ActionResult Delete(Patron patron)

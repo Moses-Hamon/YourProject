@@ -11,6 +11,11 @@ namespace YourProjectWebApp.Controllers
 {
     public class ToolLoanInvoiceController : Controller
     {
+        /// <summary>
+        /// Index for Loan Invoices, Collects all invoices
+        /// also contains lists of tools and patrons for drop down lists
+        /// </summary>
+        /// <returns></returns>
         // GET: ToolLoanInvoice
         public ActionResult Index()
         {
@@ -25,7 +30,10 @@ namespace YourProjectWebApp.Controllers
 
             return View(viewModel);
         }
-
+        /// <summary>
+        /// Sets up the view for Creating a new Tool loan invoice
+        /// </summary>
+        /// <returns></returns>
         // GET: ToolLoanInvoice/Create
         public ActionResult Create()
         {
@@ -38,7 +46,11 @@ namespace YourProjectWebApp.Controllers
             };
             return View(viewModel);
         }
-
+        /// <summary>
+        /// Creates an entry for Tool Loan Invoice using the form data from the create page
+        /// </summary>
+        /// <param name="model">Model that holds the info</param>
+        /// <returns></returns>
         // POST: ToolLoanInvoice/Create
         [HttpPost]
         public ActionResult Create(CreateInvoiceViewModel model)
@@ -67,7 +79,11 @@ namespace YourProjectWebApp.Controllers
             }
 
         }
-
+        /// <summary>
+        /// Sets up the edit view for editing a ToolLoanInvoice
+        /// </summary>
+        /// <param name="id">Id of the invoice</param>
+        /// <returns></returns>
         // GET: ToolLoanInvoice/Edit/5
         public ActionResult Edit(int id)
         {
@@ -85,7 +101,11 @@ namespace YourProjectWebApp.Controllers
 
             return View(viewModel);
         }
-
+        /// <summary>
+        /// Updates the entry via the webservice using the model from the form.
+        /// </summary>
+        /// <param name="model">Model that contains the data</param>
+        /// <returns></returns>
         // POST: ToolLoanInvoice/Edit/5
         [HttpPost]
         public ActionResult Edit(EditInvoiceViewModel model)
@@ -103,7 +123,11 @@ namespace YourProjectWebApp.Controllers
             TempData["Success"] = "Updated Successfully";
             return RedirectToAction("Index");
         }
-
+        /// <summary>
+        /// Deletes the entry using the ID via the web service.
+        /// </summary>
+        /// <param name="id">Id of the entry for deletion</param>
+        /// <returns></returns>
         // GET: ToolLoanInvoice/Delete/5
         public ActionResult Delete(int id)
         {
@@ -131,7 +155,11 @@ namespace YourProjectWebApp.Controllers
 
        
 
-
+        /// <summary>
+        /// Partial View for Invoices
+        /// </summary>
+        /// <param name="id">Id of the invoice for retrieval</param>
+        /// <returns>View</returns>
         public ActionResult _invoiceDetails(int id)
         {
             var svc = new YourProjectServiceSoapClient();
@@ -147,7 +175,11 @@ namespace YourProjectWebApp.Controllers
             return PartialView(viewModel);
         }
 
-
+        /// <summary>
+        /// Updates a PatronLoanInvoice
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Message </returns>
         public ActionResult UpdateReturn(int id)
         {
             //connect
