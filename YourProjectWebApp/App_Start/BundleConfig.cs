@@ -25,7 +25,7 @@ namespace YourProjectWebApp
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-lumen.css",
                       "~/Content/site.css",
                 "~/content/datatables/css/datatables.bootstrap.css"
                 ));
