@@ -9,16 +9,17 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    
 
 </head>
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="../Home/Index.cshtml">YourProject</a>
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")">YourProject</a>
 
     <ul class="navbar-nav">
         <li class="nav-item active mx-5">
-            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null )
         </li>
         <li class="nav-item mx-4">
             @Html.ActionLink("Patrons", "Index", "Patron", new { area = "" }, null)
@@ -32,18 +33,27 @@
         <li class="nav-item mx-4">
             @Html.ActionLink("Brand", "Index", "Brand", new { area = "" }, null)
         </li>
-        <li class="nav-item">
+        <li class="nav-item mx-4">
             @Html.ActionLink("Reports", "Index", "Reports", new { area = "" }, null)
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item mx-4">
-            @Html.ActionLink("Logout", "Logout", "Login")
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <label class="text-white mx-3">Hello: @HttpContext.Current.User.Identity.Name</label>
+                @Html.ActionLink("Logout", "Logout", "Login")
+            }
+            else
+            {
+                <label class="text-white">Please log in</label>
+            }
+            
         </li>
     </ul>
 </nav>
 
-<div class="container body-content">
+<div class="container body-content" >
     <br/>
     <h4 class="alert-success font-weight-bold">@TempData["Success"]</h4>
     @RenderBody()
