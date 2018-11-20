@@ -12,24 +12,26 @@
         <div class="col">
             <h5>Please Select a report to view</h5>
         </div>
-        <div class="col">
-            <label>Show Tools for: </label> <br/>
+        <div class="col border">
+            <label>Show Report for: </label> <br/>
             @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new {queryType = ""}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
             @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new {queryType = "AllChecked"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
             @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new {queryType = "AllActive"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
             @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new {queryType = "AllRetired"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
 
         </div>
-        <div class="col">
+        <div class="col border">
             <text>Select Brand: </text>@Html.DropDownList("BrandSelector", new SelectList(Model.Brands, "Id", "BrandName"), "", new { @id = "brand-selector" })
             <br />
-            <label>Filter By: </label>
+            <label>Filter By: </label> <br/>
             <button id="filterActive" class="btn btn-link">Active Tools</button> |
             <button id="filterRetired" class="btn btn-link js-retired">Retired Tools</button>
         </div>
-        <div class="col">
+        <div class="col border">
             <div class="row">
-                <label>View all rental history by:</label>
+                <div class="col">
+                    <label>View all rental history by:</label>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -39,6 +41,7 @@
                 <div class="col">
                     <label>Tools: </label> <br/>
                     @Html.DropDownList("ToolSelector", new SelectList(Model.Tools, "Id", "Description"), "", new { @id = "tool-selector" })
+                    
                 </div>
             </div>
         </div>
