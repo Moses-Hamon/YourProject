@@ -5,58 +5,58 @@
 
 @if (Model.Tools.Any())
 {
-<div id="ReportInfo">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
-            </th>
-            <th></th>
-        </tr>
-
-
-
-        @foreach (var item in Model.Tools)
-        {
+    <div id="ReportInfo">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrandId)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Active)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InUse)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.BrandId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Active)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.Comments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tools.GetEnumerator().Current.InUse)
+                </th>
+                <th></th>
             </tr>
 
-        }
-    </table>
-    <input id="query" type="hidden" value="@ViewBag.query" />
-    <input id="brand" type="hidden" value="@ViewBag.brand" />
-    <button id="downloadCSV" class="btn btn-link">Download Report</button>
-    
 
-</div>
+
+            @foreach (var item in Model.Tools)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InUse)
+                    </td>
+                </tr>
+
+            }
+        </table>
+        <input id="query" type="hidden" value="@ViewBag.query" />
+        <input id="brand" type="hidden" value="@ViewBag.brand" />
+        <button id="downloadCSV" class="btn btn-link">Download Report</button>
+
+
+    </div>
 }
 else
 {
@@ -66,21 +66,24 @@ else
 <script type="text/javascript">
     $(document).ready(function () {
         $("#downloadCSV").on("click", function () {
+            const confirmdownload = confirm("Download Report?");
             const query = $("#query").val();
             const tBrand = $("#brand").val();
-            // Ajax request for post method to the controller
-            $.ajax({
-                type: "POST",
-                url: `/Reports/Download/?queryType=${query}&brand=${tBrand.toString()}`,
-                // Creates a download link for receiving csv file
-                success: function (data) {
-                    var hiddenElement = document.createElement('a');
-                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
-                    hiddenElement.target = '_blank';
-                    hiddenElement.download = 'report.csv';
-                    hiddenElement.click();
-                }
-            });
+            if (confirmdownload == true) {
+                // Ajax request for post method to the controller
+                $.ajax({
+                    type: "POST",
+                    url: `/Reports/Download/?queryType=${query}&brand=${tBrand.toString()}`,
+                    // Creates a download link for receiving csv file
+                    success: function (data) {
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'Report.csv';
+                        hiddenElement.click();
+                    }
+                });
+            }
         });
     });
 </script>

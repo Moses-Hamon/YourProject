@@ -22,8 +22,7 @@
         <div class="col">
             <text>Select Brand: </text>@Html.DropDownList("BrandSelector", new SelectList(Model, "Id", "BrandName"), "", new { @id = "brand-selector"})
             <br/>
-            Filter By: 
-            <br/>
+            @* <label>Filter By: </label> *@
             <button id="filterActive" class="btn btn-link">Active Tools</button> | 
             <button id="filterRetired"  class="btn btn-link js-retired">Retired Tools</button>
         </div>
