@@ -235,6 +235,9 @@
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllPatronsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -278,9 +281,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.ValidCredentialsResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

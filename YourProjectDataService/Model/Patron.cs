@@ -11,6 +11,7 @@ namespace YourProjectDataService.Model
     {
         public long Id { get; set; }
         [Display(Name = "Patron Name")]
+        [Required]
         public string PatronName { get; set; }
         
         public bool IsGroup { get; set; }
