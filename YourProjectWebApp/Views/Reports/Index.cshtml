@@ -1,9 +1,9 @@
-﻿@model IEnumerable<YourProjectWebApp.WebServiceYourProject.Brand>
+﻿@model YourProjectWebApp.ViewModels.ReportsIndexViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-   
+
 }
 
 <h2>Reports</h2>
@@ -13,20 +13,35 @@
             <h5>Please Select a report to view</h5>
         </div>
         <div class="col">
-            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new { queryType = "" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
-            @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new { queryType = "AllChecked" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) | <br/>
-            @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new { queryType = "AllActive" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
-            @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new { queryType = "AllRetired" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) | <hr />
+            <label>Show Tools for: </label> <br/>
+            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new {queryType = ""}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
+            @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new {queryType = "AllChecked"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
+            @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new {queryType = "AllActive"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
+            @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new {queryType = "AllRetired"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
 
         </div>
         <div class="col">
-            <text>Select Brand: </text>@Html.DropDownList("BrandSelector", new SelectList(Model, "Id", "BrandName"), "", new { @id = "brand-selector"})
-            <br/>
-            @* <label>Filter By: </label> *@
-            <button id="filterActive" class="btn btn-link">Active Tools</button> | 
-            <button id="filterRetired"  class="btn btn-link js-retired">Retired Tools</button>
+            <text>Select Brand: </text>@Html.DropDownList("BrandSelector", new SelectList(Model.Brands, "Id", "BrandName"), "", new { @id = "brand-selector" })
+            <br />
+            <label>Filter By: </label>
+            <button id="filterActive" class="btn btn-link">Active Tools</button> |
+            <button id="filterRetired" class="btn btn-link js-retired">Retired Tools</button>
         </div>
-
+        <div class="col">
+            <div class="row">
+                <label>View all rental history by:</label>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Patrons: </label> <br/>
+                    @Html.DropDownList("PatronSelector", new SelectList(Model.Patrons, "Id", "PatronName"), "", new { @id = "patron-selector" })
+                </div>
+                <div class="col">
+                    <label>Tools: </label> <br/>
+                    @Html.DropDownList("ToolSelector", new SelectList(Model.Tools, "Id", "Description"), "", new { @id = "tool-selector" })
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
@@ -36,6 +51,36 @@
 
 <script>
     $(document).ready(function () {
+        // onChange action for Patron dropdown list
+        $("#patron-selector").change(function () {
+            const id = $(this).val();
+            const conditionType = "patron";
+            $.ajax({
+                type: "POST",
+                url: '/Reports/RetrieveInvoice/',
+                data: { id, conditionType },
+                success: function (data) {
+                    $("#ReportInfo").html(data);
+                    $("#tool-selector").val("");
+                }
+            });
+        });
+        // onChange action for Tools dropdown list
+        $("#tool-selector").change(function () {
+            const id = $(this).val();
+            //const conditionType = "patron";
+            $.ajax({
+                type: "POST",
+                url: '/Reports/RetrieveInvoice/',
+                data: { id },
+                success: function (data) {
+                    $("#ReportInfo").html(data);
+                    $("#patron-selector").val("");
+                }
+            });
+        });
+
+        // Onclick action for button filterActive
         $("#filterActive").on("click", function () {
             const queryType = "AllActiveByBrand";
             const brand = $("#brand-selector option:selected").val();
@@ -48,6 +93,7 @@
                 }
             });
         });
+        // Onclick action for button filterActive
         $("#filterRetired").on("click", function () {
             const queryType = "AllRetiredByBrand";
             const brand = $("#brand-selector option:selected").val();
@@ -63,6 +109,5 @@
     });
 
 </script>
-
 
 

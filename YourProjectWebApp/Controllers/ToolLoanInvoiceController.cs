@@ -156,7 +156,7 @@ namespace YourProjectWebApp.Controllers
        
 
         /// <summary>
-        /// Partial View for Invoices
+        /// Partial View for Invoice Details
         /// </summary>
         /// <param name="id">Id of the invoice for retrieval</param>
         /// <returns>View</returns>

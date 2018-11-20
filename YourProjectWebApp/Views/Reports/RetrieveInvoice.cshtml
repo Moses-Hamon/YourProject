@@ -1,0 +1,92 @@
+﻿@model YourProjectWebApp.ViewModels.InvoiceIndexViewModel
+
+<h2>Showing all invoices for: @ViewBag.filteredBy</h2>
+
+@if (Model.PatronToolLoanInvoices.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatronToolLoanInvoices.GetEnumerator().Current.ToolId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatronToolLoanInvoices.GetEnumerator().Current.PatronId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatronToolLoanInvoices.GetEnumerator().Current.DateRented)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatronToolLoanInvoices.GetEnumerator().Current.DateReturned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatronToolLoanInvoices.GetEnumerator().Current.Workspace)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.PatronToolLoanInvoices)
+        {
+            <tr>
+                <td>
+                    @foreach (var tool in Model.Tools)
+                    {
+                        if (item.ToolId == tool.Id)
+                        {
+                            @Html.DisplayFor(t => tool.Description)
+
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var patron in Model.Patrons)
+                    {
+                        if (item.PatronId == patron.Id)
+                        {
+                            @Html.DisplayFor(p => patron.PatronName)
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRented)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateReturned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workspace)
+                </td>
+            </tr>
+        }
+    </table>
+    <button id="downloadCSV" class="btn btn-link">Download Report</button>
+}
+else
+{
+    <p class="alert-warning">There are no entries for that search!!</p>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#downloadCSV").on("click", function () {
+            const confirmdownload = confirm("Download Report?");
+            if (confirmdownload == true) {
+                // Ajax request for post method to the controller
+                var model = @Html.Raw(Json.Encode(Model));
+                $.ajax({
+                    url: '@Url.Action("DownloadInvoice", "Reports")',
+                    data: JSON.stringify({ model: model}),
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    // Creates a download link for receiving csv file
+                    success: function (data) {
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = '@DateTime.Now.ToShortDateString() _Invoice_Report.csv';
+                        hiddenElement.click();
+                    }
+                });
+            }
+        });
+    });
+</script>
+

@@ -511,6 +511,13 @@ namespace YourProjectWebApp.WebServiceYourProject {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllInvoices", ReplyAction="*")]
         System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesResponse> GetAllInvoicesAsync(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest request);
         
+        // CODEGEN: Generating message contract since element name condition from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllInvoicesWithCondition", ReplyAction="*")]
+        YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse GetAllInvoicesWithCondition(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetAllInvoicesWithCondition", ReplyAction="*")]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse> GetAllInvoicesWithConditionAsync(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest request);
+        
         // CODEGEN: Generating message contract since element name GetSinglePatronToolLoanInvoiceResult from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetSinglePatronToolLoanInvoice", ReplyAction="*")]
         YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceResponse GetSinglePatronToolLoanInvoice(YourProjectWebApp.WebServiceYourProject.GetSinglePatronToolLoanInvoiceRequest request);
@@ -1474,6 +1481,74 @@ namespace YourProjectWebApp.WebServiceYourProject {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllInvoicesWithConditionRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllInvoicesWithCondition", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequestBody Body;
+        
+        public GetAllInvoicesWithConditionRequest() {
+        }
+        
+        public GetAllInvoicesWithConditionRequest(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllInvoicesWithConditionRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string condition;
+        
+        public GetAllInvoicesWithConditionRequestBody() {
+        }
+        
+        public GetAllInvoicesWithConditionRequestBody(string condition) {
+            this.condition = condition;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetAllInvoicesWithConditionResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllInvoicesWithConditionResponse", Namespace="http://tempuri.org/", Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponseBody Body;
+        
+        public GetAllInvoicesWithConditionResponse() {
+        }
+        
+        public GetAllInvoicesWithConditionResponse(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetAllInvoicesWithConditionResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoicesWithConditionResult;
+        
+        public GetAllInvoicesWithConditionResponseBody() {
+        }
+        
+        public GetAllInvoicesWithConditionResponseBody(YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoicesWithConditionResult) {
+            this.GetAllInvoicesWithConditionResult = GetAllInvoicesWithConditionResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetSinglePatronToolLoanInvoiceRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetSinglePatronToolLoanInvoice", Namespace="http://tempuri.org/", Order=0)]
@@ -2133,6 +2208,31 @@ namespace YourProjectWebApp.WebServiceYourProject {
             YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequest();
             inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesRequestBody();
             return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllInvoicesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllInvoicesWithCondition(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest request) {
+            return base.Channel.GetAllInvoicesWithCondition(request);
+        }
+        
+        public YourProjectWebApp.WebServiceYourProject.PatronToolLoanInvoice[] GetAllInvoicesWithCondition(string condition) {
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequestBody();
+            inValue.Body.condition = condition;
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse retVal = ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllInvoicesWithCondition(inValue);
+            return retVal.Body.GetAllInvoicesWithConditionResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse> YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap.GetAllInvoicesWithConditionAsync(YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest request) {
+            return base.Channel.GetAllInvoicesWithConditionAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse> GetAllInvoicesWithConditionAsync(string condition) {
+            YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest inValue = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequest();
+            inValue.Body = new YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionRequestBody();
+            inValue.Body.condition = condition;
+            return ((YourProjectWebApp.WebServiceYourProject.YourProjectServiceSoap)(this)).GetAllInvoicesWithConditionAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

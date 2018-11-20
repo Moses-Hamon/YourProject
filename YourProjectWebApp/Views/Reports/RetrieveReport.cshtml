@@ -51,24 +51,19 @@
 
             }
         </table>
-        <input id="query" type="hidden" value="@ViewBag.query" />
-        <input id="brand" type="hidden" value="@ViewBag.brand" />
         <button id="downloadCSV" class="btn btn-link">Download Report</button>
-
-
     </div>
 }
 else
 {
     <p class="alert-warning">There are no entries for that search!!</p>
 }
-
 <script type="text/javascript">
     $(document).ready(function () {
         $("#downloadCSV").on("click", function () {
             const confirmdownload = confirm("Download Report?");
-            const query = $("#query").val();
-            const tBrand = $("#brand").val();
+            const query = '@ViewBag.query';
+            const tBrand = '@ViewBag.brand';
             if (confirmdownload == true) {
                 // Ajax request for post method to the controller
                 $.ajax({
@@ -79,7 +74,7 @@ else
                         var hiddenElement = document.createElement('a');
                         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(data);
                         hiddenElement.target = '_blank';
-                        hiddenElement.download = 'Report.csv';
+                        hiddenElement.download = '@DateTime.Now.ToShortDateString() _Tool_Report.csv';
                         hiddenElement.click();
                     }
                 });

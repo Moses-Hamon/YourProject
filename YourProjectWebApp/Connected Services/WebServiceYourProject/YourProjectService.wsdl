@@ -294,6 +294,20 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:element name="GetAllInvoicesWithCondition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="condition" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllInvoicesWithConditionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllInvoicesWithConditionResult" type="tns:ArrayOfPatronToolLoanInvoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetSinglePatronToolLoanInvoice">
         <s:complexType>
           <s:sequence>
@@ -479,6 +493,12 @@
   <wsdl:message name="GetAllInvoicesSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllInvoicesResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllInvoicesWithConditionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllInvoicesWithCondition" />
+  </wsdl:message>
+  <wsdl:message name="GetAllInvoicesWithConditionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllInvoicesWithConditionResponse" />
+  </wsdl:message>
   <wsdl:message name="GetSinglePatronToolLoanInvoiceSoapIn">
     <wsdl:part name="parameters" element="tns:GetSinglePatronToolLoanInvoice" />
   </wsdl:message>
@@ -577,6 +597,10 @@
     <wsdl:operation name="GetAllInvoices">
       <wsdl:input message="tns:GetAllInvoicesSoapIn" />
       <wsdl:output message="tns:GetAllInvoicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvoicesWithCondition">
+      <wsdl:input message="tns:GetAllInvoicesWithConditionSoapIn" />
+      <wsdl:output message="tns:GetAllInvoicesWithConditionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetSinglePatronToolLoanInvoice">
       <wsdl:input message="tns:GetSinglePatronToolLoanInvoiceSoapIn" />
@@ -747,6 +771,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllInvoices">
       <soap:operation soapAction="http://tempuri.org/GetAllInvoices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvoicesWithCondition">
+      <soap:operation soapAction="http://tempuri.org/GetAllInvoicesWithCondition" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -948,6 +981,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllInvoices">
       <soap12:operation soapAction="http://tempuri.org/GetAllInvoices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInvoicesWithCondition">
+      <soap12:operation soapAction="http://tempuri.org/GetAllInvoicesWithCondition" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

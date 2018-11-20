@@ -164,6 +164,7 @@
     <Compile Include="ViewModels\InvoiceDetailsViewModel.cs" />
     <Compile Include="ViewModels\InvoiceIndexViewModel.cs" />
     <Compile Include="ViewModels\CreateToolWithBrandViewModel.cs" />
+    <Compile Include="ViewModels\ReportsIndexViewModel.cs" />
     <Compile Include="ViewModels\ToolWithBrandIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +279,9 @@
     <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.ValidCredentialsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\WebServiceYourProject\YourProjectWebApp.WebServiceYourProject.GetAllInvoicesWithConditionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -346,6 +350,7 @@
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\RetrieveReport.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Reports\RetrieveInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

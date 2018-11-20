@@ -160,6 +160,13 @@ namespace YourProjectDataService
         }
 
         [WebMethod]
+        public List<PatronToolLoanInvoice> GetAllInvoicesWithCondition(string condition)
+        {
+            var data = new PatronToolLoanInvoice().GetAll<PatronToolLoanInvoice>(PatronToolLoanInvoice.QuerySelectAll+condition);
+            return data;
+        }
+
+        [WebMethod]
         public PatronToolLoanInvoice GetSinglePatronToolLoanInvoice(int id)
         {
             var data = new PatronToolLoanInvoice().GetSingle<PatronToolLoanInvoice>(id, PatronToolLoanInvoice.QuerySelectOne);
