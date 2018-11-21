@@ -8,7 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    
     
 
 </head>
@@ -19,36 +19,39 @@
 
     <ul class="navbar-nav font-weight-bold">
         <li class="nav-item active mx-4">
-            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null )
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "btn nav-link text-primary"} )
         </li>
         <li class="nav-item mx-4">
-            @Html.ActionLink("Patrons", "Index", "Patron", new { area = "" }, null)
+            @Html.ActionLink("Patrons", "Index", "Patron", new { area = "" }, new { @class = "btn nav-link text-primary"})
         </li>
         <li class="nav-item mx-4">
-            @Html.ActionLink("Tools", "Index", "Tool", new { area = "" }, null)
+            @Html.ActionLink("Tools", "Index", "Tool", new { area = "" }, new { @class = "btn nav-link text-primary" })
         </li>
         <li class="nav-item mx-4">
-            @Html.ActionLink("Loans", "Index", "ToolLoanInvoice", new { area = "" }, null)
+            @Html.ActionLink("Loans", "Index", "ToolLoanInvoice", new { area = "" }, new { @class = "btn nav-link text-primary" })
         </li>
         <li class="nav-item mx-4">
-            @Html.ActionLink("Brand", "Index", "Brand", new { area = "" }, null)
+            @Html.ActionLink("Brand", "Index", "Brand", new { area = "" }, new { @class = "btn nav-link text-primary" })
         </li>
         <li class="nav-item mx-4">
-            @Html.ActionLink("Reports", "Index", "Reports", new { area = "" }, null)
+            @Html.ActionLink("Reports", "Index", "Reports", new { area = "" }, new { @class = "btn nav-link text-primary" })
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item mx-4">
+            <button id="helpBtn" class="btn btn-link btn-outline-info nav-link text-info" >Help OFF</button>
+        </li>
+        <li class="nav-item mx-4">
             @if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                <label class="text-white mx-3">Hello: @HttpContext.Current.User.Identity.Name</label>
+                <label class="text-white mx-3 ">Hello: @HttpContext.Current.User.Identity.Name</label>
                 @Html.ActionLink("Logout", "Logout", "Login")
             }
             else
             {
                 <label class="text-white">Please log in</label>
             }
-            
+
         </li>
     </ul>
 </nav>
@@ -64,8 +67,29 @@
 </div>
 
     
-    @Scripts.Render("~/bundles/lib")
+@Scripts.Render("~/bundles/lib")
 @Scripts.Render("~/bundles/jqueryval")
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // On help button click
+        $('#helpBtn').on("click", function () {
+            // stores button into variable
+            var btn = $(this);
+            // if the help is Off, turn it on
+            if ($('.help').css('display') === 'none') {
+                $('.help').css('display', 'block');
+                btn.text('Help ON');
+                // if the help is on, turn it off 
+            } else if ($('.help').css('display') === 'block')
+            {
+                $('.help').css('display', 'none');
+                btn.text('Help OFF');
+            }
+        });
+    });
+
+</script>

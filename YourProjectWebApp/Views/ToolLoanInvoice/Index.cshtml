@@ -14,9 +14,22 @@
 
 <h2>All Invoices</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row">
+    <div class="col">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+            <label class="help text-info" id="help" style="display: none">HELP: Click to Create a new entry</label> <!--HELP LABEL-->
+        </p>
+    </div>
+    <div class="col">
+        <div>
+            <label class="help text-info" id="help" style="display: none">HELP: Clicking Edit will edit the  entry,</label> <!--HELP LABEL-->
+            <label class="help text-info" id="help" style="display: none">Clicking Details will Display the details below,</label> <!--HELP LABEL-->
+            <label class="help text-info" id="help" style="display: none">Clicking Delete will Delete the entry,</label> <!--HELP LABEL-->
+            <label class="help text-info" id="help" style="display: none">Clicking Return Tool will return the tool, tool will be available for loan again.</label> <!--HELP LABEL-->
+        </div>
+    </div>
+</div>
 @if (invoiceHeadings != null)
 {
     <table id="invoiceTable" class="table">

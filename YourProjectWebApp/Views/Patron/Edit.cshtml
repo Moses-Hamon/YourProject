@@ -20,6 +20,7 @@
             @Html.LabelFor(model => model.PatronName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatronName, new { htmlAttributes = new { @class = "form-control" } })
+                <label class="help text-info" id="help" style="display: none">HELP: Enter a name for the Patron</label> <!--HELP LABEL-->
                 @Html.ValidationMessageFor(model => model.PatronName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,6 +30,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsGroup)
+                    <label class="help text-info" id="help" style="display: none">HELP: Does the Patron represent a Group of people.</label> <!--HELP LABEL-->
                     @Html.ValidationMessageFor(model => model.IsGroup, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -37,6 +39,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                <label class="help text-info" id="help" style="display: none">HELP: Saves the entry</label> <!--HELP LABEL-->
             </div>
         </div>
     </div>

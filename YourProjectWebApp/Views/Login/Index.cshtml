@@ -16,6 +16,7 @@
         @Html.LabelFor(model => model.UserName)
         <div class="col-md-10">
             @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+            <label class="help text-info" id="help" style="display: none">HELP: Enter Username here</label> <!--HELP LABEL-->
             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -24,6 +25,7 @@
         @Html.LabelFor(model => model.UserPassword)
         <div class="col-md-10">
             @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control", @Type = "password" } })
+            <label class="help text-info" id="help" style="display: none">HELP: Enter Password here</label> <!--HELP LABEL-->
             @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -20,7 +20,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Tool.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Tool.BrandId, new SelectList(Model.Brands, "Id", "BrandName"), "Please select", new { @class = "form-control"})
+                @Html.DropDownListFor(model => model.Tool.BrandId, new SelectList(Model.Brands, "Id", "BrandName"), "Please select", new { @class = "form-control" })
+                <label class="help text-info" id="help" style="display: none">HELP: Select brand from drop down list</label> <!--HELP LABEL-->
                 @Html.ValidationMessageFor(model => model.Tool.BrandId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -29,6 +30,7 @@
             @Html.LabelFor(model => model.Tool.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Tool.Description, new { htmlAttributes = new { @class = "form-control" } })
+                <label class="help text-info" id="help" style="display: none">HELP: Tool Name (do not include the brand)</label> <!--HELP LABEL-->
                 @Html.ValidationMessageFor(model => model.Tool.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,6 +40,7 @@
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Tool.Active)
+                    <label class="help text-info" id="help" style="display: none">HELP: Changing tool active status, inactive tools cannot be used.</label> <!--HELP LABEL-->
                     @Html.ValidationMessageFor(model => model.Tool.Active, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,6 +50,7 @@
             @Html.LabelFor(model => model.Tool.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Tool.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                <label class="help text-info" id="help" style="display: none">HELP: Place any comments here regarding tool</label> <!--HELP LABEL-->
                 @Html.ValidationMessageFor(model => model.Tool.Comments, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,6 +60,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                <label class="help text-info" id="help" style="display: none">HELP: Saves the entry</label> <!--HELP LABEL-->
             </div>
         </div>
     </div>

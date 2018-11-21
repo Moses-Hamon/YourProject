@@ -5,11 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Brand</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row">
+    <div class="col">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+            <label class="help text-info" id="help" style="display: none">HELP: Click to Create a new entry</label> <!--HELP LABEL-->
+        </p>
+    </div>
+    <div class="col">
+        <div>
+            <label class="help text-info" id="help" style="display: none">HELP: Clicking Edit will edit the  entry,</label> <!--HELP LABEL-->
+            <label class="help text-info" id="help" style="display: none">Clicking Delete will Delete the entry</label> <!--HELP LABEL-->
+        </div>
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>

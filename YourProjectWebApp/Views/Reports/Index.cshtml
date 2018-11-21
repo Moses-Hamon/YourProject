@@ -13,23 +13,26 @@
             <h5>Please Select a report to view</h5>
         </div>
         <div class="col border">
-            <label>Show Report for: </label> <br/>
-            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new {queryType = ""}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
-            @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new {queryType = "AllChecked"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
-            @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new {queryType = "AllActive"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
-            @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new {queryType = "AllRetired"}, new AjaxOptions {UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace}, new {@class = "btn-link mx-2"}) |
+            <label class="help text-info" id="help" style="display: none">HELP: Clicking the below links will Show all TOOLS that fit the categories</label> <!--HELP LABEL-->
+            <label>Show Report for: </label> <br />
+            @Ajax.ActionLink("All Tools", "RetrieveReport", "Reports", new { queryType = "" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Checked out Tools", "RetrieveReport", "Reports", new { queryType = "AllChecked" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Active Tools", "RetrieveReport", "Reports", new { queryType = "AllActive" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
+            @Ajax.ActionLink("Retired Tools", "RetrieveReport", "Reports", new { queryType = "AllRetired" }, new AjaxOptions { UpdateTargetId = "ReportInfo", InsertionMode = InsertionMode.Replace }, new { @class = "btn-link mx-2" }) |
 
         </div>
         <div class="col border">
+            <label class="help text-info" id="help" style="display: none">HELP: This section displays all Active or Retired tool filtered by brand, Select brand first then click filter</label> <!--HELP LABEL-->
             <text>Select Brand: </text>@Html.DropDownList("BrandSelector", new SelectList(Model.Brands, "Id", "BrandName"), "", new { @id = "brand-selector" })
             <br />
-            <label>Filter By: </label> <br/>
+            <label>Filter By: </label> <br />
             <button id="filterActive" class="btn btn-link">Active Tools</button> |
             <button id="filterRetired" class="btn btn-link js-retired">Retired Tools</button>
         </div>
         <div class="col border">
             <div class="row">
                 <div class="col">
+                    <label class="help text-info" id="help" style="display: none">HELP: This will display all Loan Invoices for the item selected from drop down list.</label> <!--HELP LABEL-->
                     <label>View all rental history by:</label>
                 </div>
             </div>

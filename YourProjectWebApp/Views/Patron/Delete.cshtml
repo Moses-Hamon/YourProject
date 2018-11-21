@@ -32,9 +32,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <label class="help text-info" id="help" style="display: none">HELP: Clicking Save deletes the entry </label> <!--HELP LABEL-->
+        @Html.ActionLink("Back to List", "Index")
+    </div>
     }
 </div>

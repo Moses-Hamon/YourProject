@@ -343,10 +343,8 @@
     <Content Include="Views\Tool\Index.cshtml" />
     <Content Include="Views\ToolLoanInvoice\Index.cshtml" />
     <Content Include="Views\ToolLoanInvoice\Create.cshtml" />
-    <Content Include="Views\ToolLoanInvoice\_Test.cshtml" />
     <Content Include="Views\ToolLoanInvoice\_invoiceDetails.cshtml" />
     <Content Include="Views\ToolLoanInvoice\Edit.cshtml" />
-    <Content Include="Views\Brand\Web.config" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\RetrieveReport.cshtml" />
