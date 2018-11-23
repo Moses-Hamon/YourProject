@@ -4,6 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    #myDraggable, #myDraggable1 {
+        /*position: absolute;*/
+        /*z-index: 9;*/
+        /*background-color: #f1f1f1;*/
+        /*border: 1px solid #d3d3d3;*/
+        /*text-align: center;*/
+    }
+
+    #myDraggableShape {
+        /*padding: 10px;*/
+        cursor: move;
+        /*z-index: 10;*/
+    }
+</style>
+
+
 <div class="container">
     <h1 class="display-2">YourProject</h1>
     <hr />
@@ -11,36 +28,38 @@
 
     <p class="text-body">YourProject Community Workshop is a volunteer run organization which provides work spaces and tools for the general public to use. Anyone that would like to use these work spaces is required to complete a general safety course (facilitated by YourProject). Use of heavier machinery may require additional training.</p>
     <hr />
-    
-    <div id="myDraggable">
-        <div id="myDraggableShape" style="height: 100px; width: 100px; background-color: red" ></div>
+    <h3>Click and drag the shapes</h3>
+
+    <div class="row" style="height: 130px">
+
+        <div class="col-2">
+            <div id="myDraggable4" style="height: 100px; width: 100px; background-color: red; position: absolute; cursor: move"></div>
+        </div>
+
+        <div class="col-2">
+            <div id="myDraggable2" style="height: 100px; width: 100px; background-color: #5bea09; border-radius: 50%; position: absolute; cursor: move"></div>
+        </div>
+        <div class="col-2">
+            <div id="myDraggable1" style="width: 0; height: 0; border-top: 50px solid transparent; border-right: 100px solid #095fea; border-bottom: 50px solid transparent; position: absolute; cursor: move"></div>
+        </div>
+        <div class="col-2">
+            <div id="myDraggable3" style="height: 100px; width: 150px; background-color: yellow; position: absolute; cursor: move"></div>
+        </div>
+        <div class="col-2">
+            <div id="myDraggable5" style="border-bottom: 100px solid #810fdd; border-left: 50px solid transparent; border-right: 50px solid transparent; height: 0; width: 200px; position: absolute; cursor: move; float: right"></div>
+        </div>
+
 
     </div>
 
-    <h3>Click and drag the shapes to re-order them!!!</h3>
-    <ul id="columns" class="list-inline">
-        <!-- Column containing square written in css-->
-        <li class="column list-inline-item" draggable="true">
-            <div style="height: 100px; width: 100px; background-color: red"></div>
-        </li>
-        <!-- Column containing triangle written in css-->
-        <li class="column list-inline-item" draggable="true">
-            <div style="width: 0; height: 0; border-top: 50px solid transparent; border-right: 100px solid #095fea; border-bottom: 50px solid transparent;"></div>
-        </li>
-        <!-- Column containing circle written in css-->
-        <li class="column list-inline-item" draggable="true">
-            <div style="height: 100px; width: 100px; background-color: #5bea09; border-radius: 50%;"></div>
-        </li>
-        <!-- Column containing rectangle written in css-->
-        <li class="column list-inline-item" style="width: 150px" draggable="true">
-            <div style="height: 100px; width: 150px; background-color: yellow"></div>
-        </li>
-        <!-- Column containing trapezoid written in css-->
-        <li class="column list-inline-item" style="width: 200px" draggable="true">
-            <div style="border-bottom: 100px solid #810fdd; border-left: 50px solid transparent; border-right: 50px solid transparent; height: 0; width: 200px;"></div>
-        </li>
-    </ul>
 
 
+
+
+
+
+
+
+
+    <script src="~/Content/draganddrop.js"></script>
 </div>
-<script src="~/Content/draganddrop.js"></script>
