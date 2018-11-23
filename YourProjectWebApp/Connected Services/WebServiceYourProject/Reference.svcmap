@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:55550/YourProjectService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="YourProjectService.disco" MetadataType="Disco" ID="f0d1c612-a470-48a1-8538-1440cb9327a3" SourceId="1" SourceUrl="http://localhost:55550/YourProjectService.asmx?disco" />
-    <MetadataFile FileName="YourProjectService.wsdl" MetadataType="Wsdl" ID="53f77ae8-9eb8-4a1b-8316-7894d5c6b037" SourceId="1" SourceUrl="http://localhost:55550/YourProjectService.asmx?wsdl" />
+    <MetadataFile FileName="yourprojectservice1.wsdl" MetadataType="Wsdl" ID="a5a4ab4e-96f2-432c-8ea9-84a72d428889" SourceId="1" SourceUrl="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx?wsdl" />
+    <MetadataFile FileName="yourprojectservice1.disco" MetadataType="Disco" ID="25db1fd9-cfaf-4c3f-a04d-90ef173dd57d" SourceId="1" SourceUrl="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

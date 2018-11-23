@@ -25,7 +25,7 @@ namespace YourProjectWebApp.Controllers
                 Tools = svc.GetAllTools(),
                 Brands = svc.GetAllBrands()
         };
-
+            
             //return data
             return View(viewModel);
         }

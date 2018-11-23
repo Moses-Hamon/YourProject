@@ -1045,10 +1045,10 @@
   </wsdl:binding>
   <wsdl:service name="YourProjectService">
     <wsdl:port name="YourProjectServiceSoap" binding="tns:YourProjectServiceSoap">
-      <soap:address location="http://localhost:55550/YourProjectService.asmx" />
+      <soap:address location="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" />
     </wsdl:port>
     <wsdl:port name="YourProjectServiceSoap12" binding="tns:YourProjectServiceSoap12">
-      <soap12:address location="http://localhost:55550/YourProjectService.asmx" />
+      <soap12:address location="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

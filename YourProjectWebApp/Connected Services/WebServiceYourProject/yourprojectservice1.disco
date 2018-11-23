@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx?wsdl" docRef="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" xmlns:q1="http://tempuri.org/" binding="q1:YourProjectServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://yourprojectdataservicehamon2018.azurewebsites.net/yourprojectservice.asmx" xmlns:q2="http://tempuri.org/" binding="q2:YourProjectServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>
