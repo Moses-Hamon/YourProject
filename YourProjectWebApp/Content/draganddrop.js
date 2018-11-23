@@ -1,75 +1,43 @@
-    var dragSrcEl = null;
+// Make the DIV element draggable:
+dragElement(document.getElementById("myDraggable"));
 
-    function handleDragStart(e) {
-        // Target (this) element is the source node.
-        dragSrcEl = this;
-
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.outerHTML);
-
-        this.classList.add('dragElem');
-    }
-    function handleDragOver(e) {
-        if (e.preventDefault) {
-            e.preventDefault(); // Necessary. Allows us to drop.
-        }
-        this.classList.add('over');
-
-        e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
-        return false;
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "shape")) {
+        // if present, the header is where you move the DIV from:
+        document.getElementById(elmnt.id + "shape").onmousedown = dragMouseDown;
+    } else {
+        // otherwise, move the DIV from anywhere inside the DIV: 
+        elmnt.onmousedown = dragMouseDown;
     }
 
-    function handleDragEnter(e) {
-        // this / e.target is the current hover target.
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
     }
 
-    function handleDragLeave(e) {
-        this.classList.remove('over');  // this / e.target is previous target element.
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
 
-    function handleDrop(e) {
-        // this/e.target is current target element.
-
-        if (e.stopPropagation) {
-            e.stopPropagation(); // Stops some browsers from redirecting.
-        }
-
-        // Don't do anything if dropping the same column we're dragging.
-        if (dragSrcEl != this) {
-            // Set the source column's HTML to the HTML of the column we dropped on.
-            //alert(this.outerHTML);
-            //dragSrcEl.innerHTML = this.innerHTML;
-            //this.innerHTML = e.dataTransfer.getData('text/html');
-            this.parentNode.removeChild(dragSrcEl);
-            var dropHTML = e.dataTransfer.getData('text/html');
-            this.insertAdjacentHTML('beforebegin', dropHTML);
-            var dropElem = this.previousSibling;
-            addDnDHandlers(dropElem);
-
-        }
-        this.classList.remove('over');
-        return false;
+    function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
     }
-
-    function handleDragEnd(e) {
-        // this/e.target is the source node.
-        this.classList.remove('over');
-
-        /*[].forEach.call(cols, function (col) {
-          col.classList.remove('over');
-        });*/
-    }
-
-    function addDnDHandlers(elem) {
-        elem.addEventListener('dragstart', handleDragStart, false);
-        elem.addEventListener('dragenter', handleDragEnter, false);
-        elem.addEventListener('dragover', handleDragOver, false);
-        elem.addEventListener('dragleave', handleDragLeave, false);
-        elem.addEventListener('drop', handleDrop, false);
-        elem.addEventListener('dragend', handleDragEnd, false);
-
-    }
-
-    var cols = document.querySelectorAll('#columns .column');
-    [].forEach.call(cols, addDnDHandlers);
+}
